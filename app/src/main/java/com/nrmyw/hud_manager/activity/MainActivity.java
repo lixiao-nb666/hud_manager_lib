@@ -14,12 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.newbee.ble_lib.NewBeeBleManager;
 import com.newbee.bulid_lib.mybase.activity.BaseCompatActivity;
-import com.nrmyw.ble_event_lib.bean.BleSendImageEndInfoBean;
-import com.nrmyw.ble_event_lib.bean.BleSendImageStartInfoBean;
 import com.nrmyw.ble_event_lib.statu.BleStatu;
 import com.nrmyw.ble_event_lib.statu.BleStatuEventObserver;
 import com.nrmyw.ble_event_lib.statu.BleStatuEventSubscriptionSubject;
 import com.nrmyw.hud_manager.R;
+import com.nrmyw.hud_manager.activity.t800.T800BleDataTestActivity;
 import com.nrmyw.hud_manager_lib.HudManager;
 import com.nrmyw.hud_manager_lib.type.HudDevice;
 
@@ -57,14 +56,12 @@ public class MainActivity extends BaseCompatActivity {
                     setViewByBleConnectStatu(NewBeeBleManager.getInstance().isConnect());
                     break;
                 case RUN_ERR:
+                    if(null!=msg.obj){
+                        int errRsId= (int) msg.obj;
+                        bleStatuTV.append(getResources().getText(errRsId));
+                    }
+                    break;
 
-                    break;
-                case SEND_IMAGE_START:
-                    BleSendImageStartInfoBean startInfoBean= (BleSendImageStartInfoBean) msg.obj;
-                    break;
-                case SEND_IMAGE_END:
-                    BleSendImageEndInfoBean endInfoBean= (BleSendImageEndInfoBean) msg.obj;
-                    break;
             }
         }
     };
@@ -77,31 +74,18 @@ public class MainActivity extends BaseCompatActivity {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.bt_init:
-                    NewBeeBleManager.getInstance().getEventImp().havePermissionInitBle();
+                    HudManager.getInstance().getBleEvent().havePermissionInitBle();
                     break;
                 case R.id.bt_search:
-                    NewBeeBleManager.getInstance().getEventImp().startSearchBle();
-//                    BleManager.getInstance().getEventImp().disconnectedBle();
+                    HudManager.getInstance().getBleEvent().startSearchBle();
                     break;
                 case R.id.bt_ble_set:
-//                    ActivityUtil.toActivity(MainActivity.this, BleSetActivity.class);
+                    HudManager.getInstance().getHudEvent().sendNowSpeed(160);
                     break;
                 case R.id.bt_send_test:
-//                    ActivityUtil.toActivity(MainActivity.this, T800BleDataTestActivity.class);
+                    toActivity(T800BleDataTestActivity.class);
                     break;
-                case R.id.bt_to_gaode_t:
-//                    AmapNaviParams params = new AmapNaviParams(null);
-////                    //传递上下文和导航参数
-//                    AmapNaviPage.getInstance().showRouteActivity(getApplicationContext(), params, GaoDeListenManager.getInstance().getiNaviInfoCallback());
-//                    try {
-//                        AMapNavi.getInstance(getApplicationContext()).addAMapNaviListener(GaoDeListenManager.getInstance().getaMapNaviListener());
-////                      AMapNavi.getInstance(getApplicationContext()).addParallelRoadListener(GaoDeListenManager.getInstance().getParallelRoadListener());
-//                    } catch (AMapException e) {
-//                        LG.i("kankanshenmegui"+e.toString());
-//                    }
-////                      startActivity(new Intent(getApplicationContext(), IndexActivity.class));
-////                      startActivity(new Intent(MainActivity.this, RestRouteShowActivity.class));
-                    break;
+
             }
         }
     };
@@ -128,7 +112,6 @@ public class MainActivity extends BaseCompatActivity {
         bleSetBT.setOnClickListener(onClickListener);
         sendTestBT.setOnClickListener(onClickListener);
         startGaoDeBT.setOnClickListener(onClickListener);
-
     }
 
     @Override
