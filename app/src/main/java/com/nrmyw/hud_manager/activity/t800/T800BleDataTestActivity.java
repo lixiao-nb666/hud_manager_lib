@@ -32,6 +32,7 @@ import com.nrmyw.hud_data_lib.type.set.HudGpsStatuType;
 import com.nrmyw.hud_data_lib.type.speed.HudSpeedingShowBJType;
 import com.nrmyw.hud_data_lib.type.speed.HudSpeedingShowType;
 import com.nrmyw.hud_data_lib.type.turn.HudTurnType;
+import com.nrmyw.hud_data_lib.type.type.HudStyleType;
 import com.nrmyw.hud_data_lib.type.warningproint.HudWarningPointType;
 import com.nrmyw.hud_manager.R;
 import com.nrmyw.hud_manager.util.BleByteUtil;
@@ -84,8 +85,7 @@ public class T800BleDataTestActivity extends BaseCompatActivity {
                     HudManager.getInstance().getHudEvent().setShowImageBitmapQualityType(BleSendBitmapQualityType.ULTRA_LOW);
                     break;
                 case RUN_ERR:
-                    int errRsId= (int) objects[0];
-                    int errStr= (int) objects[1];
+
                     break;
             }
         }
@@ -205,7 +205,7 @@ public class T800BleDataTestActivity extends BaseCompatActivity {
                     HudSpeedingShowType t800SpeedShowType=HudSpeedingShowType.RED;
                     int speedShowBjTypel= HudSpeedingShowBJType.values().length;
                     HudSpeedingShowBJType t800SpeedShowBJType=HudSpeedingShowBJType.RED;
-                    HudManager.getInstance().getHudEvent().sendSpeedShow(t800SpeedShowType,t800SpeedShowBJType);
+                    HudManager.getInstance().getHudEvent().sendSpeeding(t800SpeedShowType,t800SpeedShowBJType);
                     break;
                 case IntervalSpeed:
                     HudManager.getInstance().getHudEvent().sendIntervalSpeed(100,9500000,RandomUtil.getInstance().getRandomInt(200),3,20);
@@ -336,22 +336,22 @@ public class T800BleDataTestActivity extends BaseCompatActivity {
                     }
                     break;
                 case NEXT_ROAD_NAME:
-                    HudManager.getInstance().getHudEvent().sendNextLaneName("HudLane:"+RandomUtil.getInstance().getRandomInt(100));
+                    HudManager.getInstance().getHudEvent().sendNextLaneName("下一条道路名:"+RandomUtil.getInstance().getRandomInt(100));
                     break;
                 case NOW_ROAD_NAME_HIDE:
-                    HudManager.getInstance().getHudEvent().sendNowLaneStr(HudNowLaneStrType.none,"T800Lane:"+RandomUtil.getInstance().getRandomInt(100));
+                    HudManager.getInstance().getHudEvent().sendNowLaneStr(HudNowLaneStrType.none,"T800Lane道路名:"+RandomUtil.getInstance().getRandomInt(100));
                     break;
                 case NOW_ROAD_NAME_1:
-                    HudManager.getInstance().getHudEvent().sendNowLaneStr(HudNowLaneStrType.destination,"T800Destination:"+RandomUtil.getInstance().getRandomInt(100));
+                    HudManager.getInstance().getHudEvent().sendNowLaneStr(HudNowLaneStrType.destination,"T800Destination道路名:"+RandomUtil.getInstance().getRandomInt(100));
                     break;
                 case NOW_ROAD_NAME_2:
-                    HudManager.getInstance().getHudEvent().sendNowLaneStr(HudNowLaneStrType.location,"T800Location:"+RandomUtil.getInstance().getRandomInt(100));
+                    HudManager.getInstance().getHudEvent().sendNowLaneStr(HudNowLaneStrType.location,"T800Location道路名:"+RandomUtil.getInstance().getRandomInt(100));
                     break;
                 case NOW_ROAD_NAME_3:
-                    HudManager.getInstance().getHudEvent().sendNowLaneStr(HudNowLaneStrType.roadName,"T800RoadName:"+RandomUtil.getInstance().getRandomInt(100));
+                    HudManager.getInstance().getHudEvent().sendNowLaneStr(HudNowLaneStrType.roadName,"T800RoadName道路名"+RandomUtil.getInstance().getRandomInt(100));
                     break;
                 case NOW_ROAD_NAME_4:
-                    HudManager.getInstance().getHudEvent().sendNowLaneStr(HudNowLaneStrType.def,"EDF----:"+RandomUtil.getInstance().getRandomInt(100));
+                    HudManager.getInstance().getHudEvent().sendNowLaneStr(HudNowLaneStrType.def,"EDF----道路名:"+RandomUtil.getInstance().getRandomInt(100));
                     break;
                 case gps_0:
                     HudManager.getInstance().getHudEvent().sendGpsStatu(HudGpsStatuType.CLOSE);
@@ -458,10 +458,28 @@ public class T800BleDataTestActivity extends BaseCompatActivity {
                 case daylight_Statu_close:
                     HudManager.getInstance().getHudEvent().daylightingStatuClose();
                     break;
-
+                case TRUN_BJ:
+                    int numb1=bjNumb%4;
+                    HudStyleType styleType1=HudStyleType.values()[numb1];
+                    HudManager.getInstance().getHudEvent().setTrunBj(styleType1);
+                    bjNumb++;
+                    break;
+                case SPEEDING_BJ:
+                    int numb2=bjNumb%4;
+                    HudStyleType styleType2=HudStyleType.values()[numb2];
+                    HudManager.getInstance().getHudEvent().setSpeedingBj(styleType2);
+                    bjNumb++;
+                    break;
+                case YELLOW_STATU_BJ:
+                    int numb3=bjNumb%4;
+                    HudStyleType styleType3=HudStyleType.values()[numb3];
+                    HudManager.getInstance().getHudEvent().setYellowStatuBj(styleType3);
+                    bjNumb++;
+                    break;
             }
         }
     };
+    private int bjNumb=0;
 
     private int getRandomIntByHour(){
         return RandomUtil.getInstance().getRandomInt(24);

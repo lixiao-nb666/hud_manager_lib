@@ -71,6 +71,9 @@ public enum T800TestDataType {
     Yellow_Statu_STR(T800TestTitleType.STATU,R.string.t800_test_item_yellow_statu_str),
     icon_flicker_open(T800TestTitleType.STATU,R.string.t800_test_item_icon_flicker_open),
     icon_flicker_close(T800TestTitleType.STATU,R.string.t800_test_item_icon_flicker_close),
+    YELLOW_STATU_BJ(T800TestTitleType.STATU,R.string.set_yellow_statu_bj),
+    TRUN_BJ(T800TestTitleType.STATU,R.string.set_trun_bj),
+    SPEEDING_BJ(T800TestTitleType.STATU,R.string.set_speeding_bj),
     ;
     private T800TestTitleType titleType;
     private int titleRsId;
