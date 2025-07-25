@@ -25,15 +25,19 @@ import com.nrmyw.hud_data_lib.bean.HudLaneCountBean;
 import com.nrmyw.hud_data_lib.bean.HudLaneHiPassCountBean;
 import com.nrmyw.hud_data_lib.event.retrun.HudRetrunEventObserver;
 import com.nrmyw.hud_data_lib.event.retrun.HudRetrunEventSubscriptionSubject;
-import com.nrmyw.hud_data_lib.type.HudStatuType;
+
 import com.nrmyw.hud_data_lib.type.lane.HudLaneType;
 import com.nrmyw.hud_data_lib.type.lane.HudNowLaneStrType;
 import com.nrmyw.hud_data_lib.type.set.HudGpsStatuType;
 import com.nrmyw.hud_data_lib.type.speed.HudSpeedingShowBJType;
-import com.nrmyw.hud_data_lib.type.speed.HudSpeedingShowType;
+
+import com.nrmyw.hud_data_lib.type.speed.HudSpeedingTextType;
+import com.nrmyw.hud_data_lib.type.turn.HudTurnBjType;
 import com.nrmyw.hud_data_lib.type.turn.HudTurnType;
-import com.nrmyw.hud_data_lib.type.type.HudStyleType;
+
+import com.nrmyw.hud_data_lib.type.type.HudStatuType;
 import com.nrmyw.hud_data_lib.type.warningproint.HudWarningPointType;
+import com.nrmyw.hud_data_lib.type.yellow_statu.HudYellowStatuBjType;
 import com.nrmyw.hud_manager.R;
 import com.nrmyw.hud_manager.util.BleByteUtil;
 import com.nrmyw.hud_manager_lib.HudManager;
@@ -171,6 +175,8 @@ public class T800BleDataTestActivity extends BaseCompatActivity {
     }
     private int wpIndex=0;
     private int twLoopIndex=0;
+    private int speedingStyle=-1;
+    private int yellowStatuStyle=0;
     private T800TestDataAdapter.ItemClick itemClick=new T800TestDataAdapter.ItemClick() {
         @Override
         public void nowSelect(T800TestDataType t800TestDataType) {
@@ -201,11 +207,20 @@ public class T800BleDataTestActivity extends BaseCompatActivity {
                     setShowTV("send speed:"+speed2+"-"+limitedSpeed1+"-"+limitedSpeed2);
                     break;
                 case speeding:
-                    int speedShowTypeL= HudSpeedingShowType.values().length;
-                    HudSpeedingShowType t800SpeedShowType=HudSpeedingShowType.RED;
-                    int speedShowBjTypel= HudSpeedingShowBJType.values().length;
-                    HudSpeedingShowBJType t800SpeedShowBJType=HudSpeedingShowBJType.RED;
-                    HudManager.getInstance().getHudEvent().sendSpeeding(t800SpeedShowType,t800SpeedShowBJType);
+                    speedingStyle++;
+                    if(speedingStyle>=HudSpeedingShowBJType.values().length){
+                        speedingStyle=0;
+                    }
+                    HudSpeedingTextType speedingTextType=null;
+                    if(speedingStyle==0){
+                        speedingTextType=HudSpeedingTextType.WRITE;
+                    }else {
+                        speedingTextType=HudSpeedingTextType.RED;
+                    }
+                    HudSpeedingShowBJType speedingShowBJType=HudSpeedingShowBJType.values()[speedingStyle];
+
+                    HudManager.getInstance().getHudEvent().sendSpeeding(speedingTextType,speedingShowBJType);
+
                     break;
                 case IntervalSpeed:
                     HudManager.getInstance().getHudEvent().sendIntervalSpeed(100,9500000,RandomUtil.getInstance().getRandomInt(200),3,20);
@@ -318,17 +333,17 @@ public class T800BleDataTestActivity extends BaseCompatActivity {
                 case TrunType_1:
                     int tw1=RandomUtil.getInstance().getRandomInt(HudTurnType.values().length);
                     int td1=getRandomIntBySpeedByMeter(2000);
-                    HudManager.getInstance().getHudEvent().sendTrunType(HudTurnType.values()[tw1],td1);
+                    HudManager.getInstance().getHudEvent().sendTurnType(HudTurnType.values()[tw1],td1);
                     break;
                 case TrunType_2:
                     int tw21=RandomUtil.getInstance().getRandomInt(HudTurnType.values().length);
                     int td21=getRandomIntBySpeedByMeter(2000);
                     int tw22=RandomUtil.getInstance().getRandomInt(HudTurnType.values().length);
                     int td22=getRandomIntBySpeedByMeter(2000);
-                    HudManager.getInstance().getHudEvent().sendTrunType(HudTurnType.values()[tw21],td21,HudTurnType.values()[tw22],td22);
+                    HudManager.getInstance().getHudEvent().sendTurnType(HudTurnType.values()[tw21],td21,HudTurnType.values()[tw22],td22);
                     break;
                 case TrunType_3:
-                    HudManager.getInstance().getHudEvent().sendTrunType(HudTurnType.values()[twLoopIndex],60);
+                    HudManager.getInstance().getHudEvent().sendTurnType(HudTurnType.values()[twLoopIndex],60);
                     setShowTV("trun type index："+ BleByteUtil.parseByte2HexStr(HudTurnType.values()[twLoopIndex].getType())+"--"+HudTurnType.values()[twLoopIndex]);
                     twLoopIndex++;
                     if(twLoopIndex>=HudTurnType.values().length){
@@ -425,10 +440,14 @@ public class T800BleDataTestActivity extends BaseCompatActivity {
                     HudManager.getInstance().getHudEvent().hideImage();
                     break;
                 case show_Yellow_Statu:
-                    HudManager.getInstance().getHudEvent().showYellowStatu();
+                    yellowStatuStyle++;
+                    if(yellowStatuStyle>4){
+                        yellowStatuStyle=1;
+                    }
+                    HudManager.getInstance().getHudEvent().setYellowStatu(HudYellowStatuBjType.values()[yellowStatuStyle]);
                     break;
                 case hide_Yellow_Statu:
-                    HudManager.getInstance().getHudEvent().hideYellowStatu();
+                    HudManager.getInstance().getHudEvent().setYellowStatu(HudYellowStatuBjType.HIDE);
                     break;
 
                 case icon_flicker_open:
@@ -459,27 +478,27 @@ public class T800BleDataTestActivity extends BaseCompatActivity {
                     HudManager.getInstance().getHudEvent().daylightingStatuClose();
                     break;
                 case TRUN_BJ:
-                    int numb1=bjNumb%4;
-                    HudStyleType styleType1=HudStyleType.values()[numb1];
-                    HudManager.getInstance().getHudEvent().setTrunBj(styleType1);
-                    bjNumb++;
+                    int numb1=turnBjNumb%4;
+                    HudTurnBjType hudTurnBjType=HudTurnBjType.values()[numb1];
+                    HudManager.getInstance().getHudEvent().setTurnBj(hudTurnBjType);
+                    turnBjNumb++;
                     break;
-                case SPEEDING_BJ:
-                    int numb2=bjNumb%4;
-                    HudStyleType styleType2=HudStyleType.values()[numb2];
-                    HudManager.getInstance().getHudEvent().setSpeedingBj(styleType2);
-                    bjNumb++;
-                    break;
-                case YELLOW_STATU_BJ:
-                    int numb3=bjNumb%4;
-                    HudStyleType styleType3=HudStyleType.values()[numb3];
-                    HudManager.getInstance().getHudEvent().setYellowStatuBj(styleType3);
-                    bjNumb++;
-                    break;
+//                case SPEEDING_BJ:
+//                    int numb2=bjNumb%4;
+//                    HudStyleType styleType2=HudStyleType.values()[numb2];
+//                    HudManager.getInstance().getHudEvent().setSpeedingBj(styleType2);
+//                    bjNumb++;
+//                    break;
+//                case YELLOW_STATU_BJ:
+//                    int numb3=bjNumb%4;
+//                    HudStyleType styleType3=HudStyleType.values()[numb3];
+//                    HudManager.getInstance().getHudEvent().setYellowStatuBj(styleType3);
+//                    bjNumb++;
+//                    break;
             }
         }
     };
-    private int bjNumb=0;
+    private int turnBjNumb=0;
 
     private int getRandomIntByHour(){
         return RandomUtil.getInstance().getRandomInt(24);

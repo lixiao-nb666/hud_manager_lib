@@ -155,4 +155,7 @@
     <string name="t800_test_item_yellow_statu_str">yellow status str</string>
     <string name="t800_test_item_icon_flicker_open">아이콘 깜박임</string>
     <string name="t800_test_item_icon_flicker_close">아이콘 깜빡임 끄기</string>
+    <string name="t800_test_item_set_speeding_bj" >设置超速背景-循环</string>
+    <string name="t800_test_item_set_trun_bj" >设置转向背景-循环</string>
+    <string name="t800_test_item_set_yellow_statu_bj" >设置黄色状态栏背景-循环</string>
 </resources>

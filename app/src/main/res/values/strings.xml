@@ -1,6 +1,4 @@
 <resources>
     <string name="app_name" translatable="false">Hud Manager</string>
-    <string name="set_speeding_bj" translatable="false">设置超速背景-循环</string>
-    <string name="set_trun_bj" translatable="false">设置转向背景-循环</string>
-    <string name="set_yellow_statu_bj" translatable="false">设置黄色状态栏背景-循环</string>
+
 </resources>
