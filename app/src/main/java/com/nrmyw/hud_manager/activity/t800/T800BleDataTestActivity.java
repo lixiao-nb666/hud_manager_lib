@@ -28,6 +28,7 @@ import com.nrmyw.hud_data_lib.event.retrun.HudRetrunEventSubscriptionSubject;
 
 import com.nrmyw.hud_data_lib.type.lane.HudLaneType;
 import com.nrmyw.hud_data_lib.type.lane.HudNowLaneStrType;
+import com.nrmyw.hud_data_lib.type.reach.HudReachType;
 import com.nrmyw.hud_data_lib.type.set.HudGpsStatuType;
 import com.nrmyw.hud_data_lib.type.speed.HudSpeedingShowBJType;
 
@@ -185,7 +186,7 @@ public class T800BleDataTestActivity extends BaseCompatActivity {
                     for(int i=0;i<6;i++){
                         HudManager.getInstance().getHudEvent().sendTime();
                         HudManager.getInstance().getHudEvent().sendNowSpeed(getRandomIntBySpeed());
-                        HudManager.getInstance().getHudEvent().sendReachInfo(getRandomIntBySpeedByMeter(10000),15,33);
+                        HudManager.getInstance().getHudEvent().sendReachInfo(getRandomIntBySpeedByMeter(10000),15,33, HudReachType.AM);
                         HudManager.getInstance().getHudEvent().sendNowLaneStr(HudNowLaneStrType.roadName,"T800Lane:"+RandomUtil.getInstance().getRandomInt(100));
                         HudManager.getInstance().getHudEvent().queDeviceVersion();
                     }
@@ -260,7 +261,7 @@ public class T800BleDataTestActivity extends BaseCompatActivity {
                     break;
                 case ReachInfo_1:
 
-                    HudManager.getInstance().getHudEvent().sendReachInfo(getRandomIntBySpeedByMeter(10000),14,30);
+                    HudManager.getInstance().getHudEvent().sendReachInfo(getRandomIntBySpeedByMeter(10000),14,30,HudReachType.AM);
                     break;
                 case ReachInfo_2:
                     HudManager.getInstance().getHudEvent().sendReachInfo("fdsfsfjskljf");
@@ -317,7 +318,8 @@ public class T800BleDataTestActivity extends BaseCompatActivity {
                         int nowRi=RandomUtil.getInstance().getRandomInt(20)+1;
                         t800LaneHiPassCountBean.add(nowRi);
                     }
-                    HudManager.getInstance().getHudEvent().sendLaneHiPass(t800LaneHiPassCountBean,lihpr);
+
+                    HudManager.getInstance().getHudEvent().sendLaneHiPass(t800LaneHiPassCountBean);
                     break;
                 case LaneInformation_hi_pass_2:
                     HudLaneHiPassCountBean t800LaneHiPassCountBean2=new HudLaneHiPassCountBean();
@@ -328,7 +330,7 @@ public class T800BleDataTestActivity extends BaseCompatActivity {
                     t800LaneHiPassCountBean2.add(20);
                     t800LaneHiPassCountBean2.add(-1);
                     t800LaneHiPassCountBean2.add(30);
-                    HudManager.getInstance().getHudEvent().sendLaneHiPass(t800LaneHiPassCountBean2,5);
+                    HudManager.getInstance().getHudEvent().sendLaneHiPass(t800LaneHiPassCountBean2);
                     break;
                 case TrunType_1:
                     int tw1=RandomUtil.getInstance().getRandomInt(HudTurnType.values().length);
@@ -416,10 +418,8 @@ public class T800BleDataTestActivity extends BaseCompatActivity {
                     HudManager.getInstance().getHudEvent().queSound();
                     break;
                 case send_Image1:
-
                     Bitmap bt1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.img_test_1);
                     HudManager.getInstance().getHudEvent().sendImage(bt1);
-
                     break;
                 case send_Image2:
                     Bitmap bt2 = BitmapFactory.decodeResource(context.getResources(), R.drawable.img_test_2);
