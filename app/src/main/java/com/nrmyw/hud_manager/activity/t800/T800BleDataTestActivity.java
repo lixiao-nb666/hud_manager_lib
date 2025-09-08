@@ -88,7 +88,7 @@ public class T800BleDataTestActivity extends BaseCompatActivity {
                 case SEND_IMAGE_END:
                     BleSendImageEndInfoBean bleSendImageEndInfoBean= (BleSendImageEndInfoBean) objects[0];
                     setShowTV("Send Image time :"+bleSendImageEndInfoBean.getUseTime());
-                    HudManager.getInstance().getHudEvent().setShowImageBitmapQualityType(BleSendBitmapQualityType.ULTRA_LOW);
+//                    HudManager.getInstance().getHudEvent().setShowImageBitmapQualityType(BleSendBitmapQualityType.ULTRA_LOW);
                     break;
                 case RUN_ERR:
 
