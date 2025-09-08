@@ -438,7 +438,7 @@ public class T800BleDataTestActivity extends BaseCompatActivity {
                     HudManager.getInstance().getHudEvent().showImage();
                     break;
                 case hide_Image:
-                    HudManager.getInstance().getHudEvent().hideImage(HudImageType.IMAGE);
+                    HudManager.getInstance().getHudEvent().hideImage();
                     break;
                 case show_Yellow_Statu:
                     yellowStatuStyle++;
