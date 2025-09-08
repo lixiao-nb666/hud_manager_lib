@@ -26,6 +26,7 @@ import com.nrmyw.hud_data_lib.bean.HudLaneHiPassCountBean;
 import com.nrmyw.hud_data_lib.event.retrun.HudRetrunEventObserver;
 import com.nrmyw.hud_data_lib.event.retrun.HudRetrunEventSubscriptionSubject;
 
+import com.nrmyw.hud_data_lib.type.image.HudImageType;
 import com.nrmyw.hud_data_lib.type.lane.HudLaneType;
 import com.nrmyw.hud_data_lib.type.lane.HudNowLaneStrType;
 import com.nrmyw.hud_data_lib.type.reach.HudReachType;
@@ -437,7 +438,7 @@ public class T800BleDataTestActivity extends BaseCompatActivity {
                     HudManager.getInstance().getHudEvent().showImage();
                     break;
                 case hide_Image:
-                    HudManager.getInstance().getHudEvent().hideImage();
+                    HudManager.getInstance().getHudEvent().hideImage(HudImageType.IMAGE);
                     break;
                 case show_Yellow_Statu:
                     yellowStatuStyle++;
