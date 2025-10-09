@@ -3,7 +3,7 @@ package com.nrmyw.hud_manager_lib;
 import android.content.Context;
 
 import com.newbee.ble_lib.NewBeeBleManager;
-import com.nrmyw.ble_event_lib.bean.BleDeviceBean;
+
 import com.nrmyw.ble_event_lib.config.NewBeeBleConfig;
 import com.nrmyw.ble_event_lib.send.BleEventObserver;
 import com.nrmyw.hud_data_event_lib.HudEventImp;
