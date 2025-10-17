@@ -10,6 +10,7 @@ import com.nrmyw.hud_data_event_lib.HudEventImp;
 import com.nrmyw.hud_data_event_lib.HudEventManager;
 import com.nrmyw.hud_data_event_lib.config.HudSetConfig;
 import com.nrmyw.hud_data_lib.config.HudConfig;
+import com.nrmyw.hud_manager_lib.hud.HudDataEvent;
 import com.nrmyw.hud_manager_lib.type.HudDevice;
 
 public class HudManager {
@@ -60,6 +61,10 @@ public class HudManager {
     public HudEventImp getHudEvent(){
 
         return HudEventManager.getInstance().getHudEvent();
+    }
+
+    public HudDataEvent getDataEvent(){
+        return HudDataEvent.getInstance();
     }
 
 

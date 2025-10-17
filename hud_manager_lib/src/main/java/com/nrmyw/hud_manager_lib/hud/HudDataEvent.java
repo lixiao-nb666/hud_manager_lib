@@ -110,11 +110,9 @@ public class HudDataEvent {
         hudDataInfoBean.getTurnBean().setNextLaneName(nextLaneName);
     }
 
-
     public void setNowLane(HudNowLaneStrType nowLaneStrType, String showString){
         hudDataInfoBean.getNowLaneBean().setNowLane(nowLaneStrType,showString);
     }
-
 
 
 
