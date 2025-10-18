@@ -33,7 +33,7 @@ public class HudManager {
     }
 
     public void init(Context context){
-        NewBeeBleConfig.getInstance().init(HudConfig.isAutomatic, HudConfig.mtu,HudConfig.serviceID,HudConfig.writeID,HudConfig.noticeID, HudDevice.getBleDeviceTypeList());
+        NewBeeBleConfig.getInstance().init(true, HudConfig.mtu,HudConfig.serviceID,HudConfig.writeID,HudConfig.noticeID, HudDevice.getBleDeviceTypeList());
         NewBeeBleManager.getInstance().init(context);
         HudEventManager.getInstance().init(context);
 
