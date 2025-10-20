@@ -15,7 +15,7 @@ import com.nrmyw.hud_manager_lib.type.HudDevice;
 
 public class HudManager {
     private static HudManager hudManager;
-    private HudDevice hudDevice;
+
 
 
     private HudManager(){
@@ -36,7 +36,6 @@ public class HudManager {
         NewBeeBleConfig.getInstance().init(true, HudConfig.mtu,HudConfig.serviceID,HudConfig.writeID,HudConfig.noticeID, HudDevice.getBleDeviceTypeList());
         NewBeeBleManager.getInstance().init(context);
         HudEventManager.getInstance().init(context);
-
     }
 
 
