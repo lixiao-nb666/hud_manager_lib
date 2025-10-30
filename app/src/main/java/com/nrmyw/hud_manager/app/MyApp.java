@@ -6,6 +6,7 @@ import com.nrmyw.hud_manager_lib.HudManager;
 public class MyApp extends BaseApplication {
     @Override
     protected void init() {
+        // 1 step
         HudManager.getInstance().init(getApplicationContext());
     }
 
@@ -16,6 +17,7 @@ public class MyApp extends BaseApplication {
 
     @Override
     protected void close() {
+        // 2 step
         HudManager.getInstance().close();
     }
 }

@@ -60,10 +60,9 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'com.github.lixiao-nb666:build_lib:1.1.4'
     implementation 'com.github.lixiao-nb666:welcome_activity_lib:1.0.0'
-    implementation 'com.github.lixiao-nb666:ble_lib:1.0.34'
-    implementation 'com.github.lixiao-nb666:ble_event:1.0.12'
-    implementation 'com.github.lixiao-nb666:hud_data_lib:1.0.15'
-    implementation 'com.github.lixiao-nb666:hud_event_lib:1.0.39'
-    implementation project(path: ':hud_manager_lib')
-
+    implementation 'com.github.lixiao-nb666:ble_lib:1.0.38'
+    implementation 'com.github.lixiao-nb666:ble_event:1.0.13'
+    implementation 'com.github.lixiao-nb666:hud_data_lib:1.0.17'
+    implementation 'com.github.lixiao-nb666:hud_event_lib:1.0.42'
+    implementation 'com.github.lixiao-nb666:hud_manager_lib:1.0.17'
 }

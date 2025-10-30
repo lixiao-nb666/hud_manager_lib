@@ -45,6 +45,11 @@ public class HudManager {
         HudEventManager.getInstance().close();
     }
 
+
+    public void nowGetAllPermissions(){
+        NewBeeBleManager.getInstance().nowGetAllPermissions();
+
+    }
     public HudSetConfig getHudSetConfig(){
         return HudSetConfig.getInstance();
     }
@@ -57,8 +62,11 @@ public class HudManager {
        return NewBeeBleManager.getInstance().getEventImp();
     }
 
-    public HudEventImp getHudEvent(){
+    public boolean deviceIsConnected(){
+        return NewBeeBleManager.getInstance().isConnect();
+    }
 
+    public HudEventImp getHudEvent(){
         return HudEventManager.getInstance().getHudEvent();
     }
 
