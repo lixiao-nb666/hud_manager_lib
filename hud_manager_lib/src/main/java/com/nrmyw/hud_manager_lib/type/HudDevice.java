@@ -9,7 +9,8 @@ public enum HudDevice {
     T800("T800","data",HudDeviceSendDataType.T800),
     T700_DEBUG("T800","DATA",HudDeviceSendDataType.T700),
     T700("T700","DATA",HudDeviceSendDataType.T700),
-
+    T700_UPDATE_1("HUD-","-7DATA",HudDeviceSendDataType.T700),
+    T700_UPDATE_2("hud-","-7data",HudDeviceSendDataType.T700),
     ;
     private String title;
     private String body;
