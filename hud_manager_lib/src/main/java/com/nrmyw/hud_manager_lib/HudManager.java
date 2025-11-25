@@ -6,6 +6,7 @@ import com.newbee.ble_lib.NewBeeBleManager;
 
 import com.nrmyw.ble_event_lib.config.NewBeeBleConfig;
 import com.nrmyw.ble_event_lib.send.BleEventObserver;
+import com.nrmyw.ble_event_lib.type.BleSendBitmapQualityType;
 import com.nrmyw.hud_data_event_lib.HudEventImp;
 import com.nrmyw.hud_data_event_lib.HudEventManager;
 import com.nrmyw.hud_data_event_lib.config.HudSetConfig;
@@ -36,6 +37,10 @@ public class HudManager {
         NewBeeBleConfig.getInstance().init(true, HudConfig.mtu,HudConfig.serviceID,HudConfig.writeID,HudConfig.noticeID, HudDevice.getBleDeviceTypeList());
         NewBeeBleManager.getInstance().init(context);
         HudEventManager.getInstance().init(context);
+        BleSendBitmapQualityType.PROGRESS.setZoomScaling(1f);
+        BleSendBitmapQualityType.PROGRESS.setQualityV(8);
+        BleSendBitmapQualityType.ULTRA_HIGH.setQualityV(66);
+        BleSendBitmapQualityType.ULTRA_HIGH.setZoomScaling(0.66f);
     }
 
 
