@@ -6,7 +6,7 @@ import com.newbee.ble_lib.NewBeeBleManager;
 
 import com.nrmyw.ble_event_lib.config.NewBeeBleConfig;
 import com.nrmyw.ble_event_lib.send.BleEventObserver;
-import com.nrmyw.ble_event_lib.type.BleSendBitmapQualityType;
+
 import com.nrmyw.hud_data_event_lib.HudEventImp;
 import com.nrmyw.hud_data_event_lib.HudEventManager;
 import com.nrmyw.hud_data_event_lib.config.HudSetConfig;
@@ -76,6 +76,25 @@ public class HudManager {
     }
 
 
+    public String getUpdateUrl(boolean isDebug){
+        return getUpdateUrl(getHudDevice(),isDebug);
+    }
 
+    public String getUpdateUrl(HudDevice hudDevice,boolean isDebug){
+        if(null==hudDevice){
+            return "";
+        }
+        switch (hudDevice){
+            case T700:
+                return HudConfig.getHudT700UpdateUrl(isDebug);
+            case T900:
+            case T900_1:
+            case T900_2:
+                return HudConfig.getHudT900UpdateUrl(isDebug);
+            default:
+                return "";
+        }
+
+    }
 
 }
