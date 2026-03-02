@@ -1,5 +1,6 @@
 package com.nrmyw.hud_manager_lib.hud.util;
 
+import com.newbee.ble_lib.NewBeeBleManager;
 import com.nrmyw.hud_manager_lib.HudManager;
 import com.nrmyw.hud_manager_lib.type.HudDisplayMold;
 import com.nrmyw.hud_manager_lib.type.HudDisplayReflectorMold;
@@ -27,13 +28,30 @@ public class HudLuminaceManager {
         hightLuminaceV=0;
     }
 
+
+    private boolean checkDataCanUse(int newLowV,int newHightV){
+
+        if(!NewBeeBleManager.getInstance().isConnect()){
+            return false;
+        }
+        if(null==NewBeeBleManager.getInstance().getNowUseBleDevice()){
+            return false;
+        }
+
+
+        if(newLowV==lowLuminaceV&&newHightV==hightLuminaceV){
+            return false;
+        }
+        return true;
+    }
     public void setHudDisplayMold(HudDisplayMold hudDisplayMold){
         if(null==hudDisplayMold){
             return;
         }
-        if(hudDisplayMold.getLowLuminance()==lowLuminaceV&&hudDisplayMold.getHightLuminance()==hightLuminaceV){
+        if(!checkDataCanUse(hudDisplayMold.getLowLuminance(),hudDisplayMold.getHightLuminance())){
             return;
         }
+
         lowLuminaceV=hudDisplayMold.getLowLuminance();
         hightLuminaceV=hudDisplayMold.getHightLuminance();
         HudManager.getInstance().getHudEvent().setLuminancePercent(lowLuminaceV,hightLuminaceV);
@@ -44,7 +62,7 @@ public class HudLuminaceManager {
         if(null==hudDisplayReflectorMold){
             return;
         }
-        if(hudDisplayReflectorMold.getLowLuminance()==lowLuminaceV&&hudDisplayReflectorMold.getHightLuminance()==hightLuminaceV){
+        if(!checkDataCanUse(hudDisplayReflectorMold.getLowLuminance(),hudDisplayReflectorMold.getHightLuminance())){
             return;
         }
         lowLuminaceV=hudDisplayReflectorMold.getLowLuminance();
