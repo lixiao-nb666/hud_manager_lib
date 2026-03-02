@@ -12,6 +12,16 @@ public class HudLuminaceManager {
 
     }
 
+    public static HudLuminaceManager getInstance(){
+        if(null==hudLuminaceManager){
+            synchronized (HudLuminaceManager.class){
+                if(null==hudLuminaceManager){
+                    hudLuminaceManager=new HudLuminaceManager();
+                }
+            }
+        }
+        return hudLuminaceManager;
+    }
     public void cearlData(){
         lowLuminaceV=0;
         hightLuminaceV=0;
