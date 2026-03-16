@@ -2,17 +2,18 @@ package com.nrmyw.hud_manager_lib.type;
 
 
 import com.nrmyw.ble_event_lib.bean.BleDeviceBean;
+import com.nrmyw.hud_data_lib.type.send_data.HudDeviceSendDataType;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 public enum HudDevice {
-    T800("T800","data",HudDeviceSendDataType.T800),
-    T700_DEBUG("T800","DATA",HudDeviceSendDataType.T700),
+    T800("T800","data", HudDeviceSendDataType.T800),
+    T800_1("T800","DATA",HudDeviceSendDataType.T700),
     T700("T700","DATA","700666",0x0642,HudDeviceSendDataType.T700),
     T700_1("HUD-","DATA",HudDeviceSendDataType.T700),
     T700_2("hud-","data",HudDeviceSendDataType.T700),
-
     T700_3("HUD-","T700-DATA",HudDeviceSendDataType.T700),
     T700_4("hud-","T700-data",HudDeviceSendDataType.T700),
 

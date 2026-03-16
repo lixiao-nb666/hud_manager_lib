@@ -7,6 +7,10 @@ import com.newbee.ble_lib.NewBeeBleManager;
 import com.nrmyw.ble_event_lib.config.NewBeeBleConfig;
 import com.nrmyw.ble_event_lib.send.BleEventObserver;
 
+import com.nrmyw.ble_event_lib.statu.BleStatu;
+import com.nrmyw.ble_event_lib.statu.BleStatuEventObserver;
+import com.nrmyw.ble_event_lib.statu.BleStatuEventSubscriptionSubject;
+import com.nrmyw.ble_event_lib.type.BleSendBitmapQualityType;
 import com.nrmyw.hud_data_event_lib.HudEventImp;
 import com.nrmyw.hud_data_event_lib.HudEventManager;
 import com.nrmyw.hud_data_event_lib.config.HudSetConfig;
@@ -16,10 +20,20 @@ import com.nrmyw.hud_manager_lib.type.HudDevice;
 
 public class HudManager {
     private static HudManager hudManager;
-
+//    private BleStatuEventObserver bleStatuEventObserver=new BleStatuEventObserver() {
+//        @Override
+//        public void sendBleStatu(BleStatu bleStatu, Object... object) {
+//            switch (bleStatu){
+//                case CONNECTING:
+//
+//                    break;
+//            }
+//        }
+//    };
 
 
     private HudManager(){
+//        BleStatuEventSubscriptionSubject.getInstance().attach(bleStatuEventObserver);
     }
 
     public static HudManager getInstance(){
@@ -41,9 +55,11 @@ public class HudManager {
 
 
 
+
     public void close(){
         NewBeeBleManager.getInstance().close();
         HudEventManager.getInstance().close();
+//        BleStatuEventSubscriptionSubject.getInstance().detach(bleStatuEventObserver);
     }
 
 
@@ -94,7 +110,6 @@ public class HudManager {
             default:
                 return "";
         }
-
     }
 
 }
