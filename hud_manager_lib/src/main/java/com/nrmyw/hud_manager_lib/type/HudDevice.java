@@ -19,14 +19,15 @@ public enum HudDevice {
     H3000("H3000","DATA", HudDeviceSendDataType.T800),
     H3000_1("H3000","data", HudDeviceSendDataType.T800),
     T700("T700","DATA","700666",0x0642,HudDeviceSendDataType.T700),
-    T700_1("HUD-","DATA",HudDeviceSendDataType.T700),
-    T700_2("hud-","data",HudDeviceSendDataType.T700),
-    T700_3("HUD-","T700-DATA",HudDeviceSendDataType.T700),
-    T700_4("hud-","T700-data",HudDeviceSendDataType.T700),
+
+    T700_1("HUD-","T700-DATA",HudDeviceSendDataType.T700),
+    T700_2("hud-","T700-data",HudDeviceSendDataType.T700),
 
     T900("T900","DATA","700666",0x0643,HudDeviceSendDataType.T900),
-    T900_1("hud-","T900-data",HudDeviceSendDataType.T900),
+    T900_1("HUD-","T900-DATA",HudDeviceSendDataType.T900),
     T900_2("hud-","T900-data",HudDeviceSendDataType.T900),
+    HUD_T("HUD-","DATA",HudDeviceSendDataType.T700),
+    HUT_T("hud-","data",HudDeviceSendDataType.T700),
     ;
     private String title;
     private String body;
