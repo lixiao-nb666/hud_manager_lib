@@ -2,8 +2,8 @@ package com.nrmyw.hud_manager_lib.hud.util;
 
 import com.newbee.ble_lib.NewBeeBleManager;
 import com.nrmyw.hud_manager_lib.HudManager;
+import com.nrmyw.hud_manager_lib.manager.set_child.HudBrightnessManager;
 import com.nrmyw.hud_manager_lib.type.HudDisplayMold;
-import com.nrmyw.hud_manager_lib.type.HudDisplayReflectorMold;
 
 public class HudLuminaceManager {
     private final String shareKey="HudLuminaceManager";
@@ -51,24 +51,14 @@ public class HudLuminaceManager {
         if(!checkDataCanUse(hudDisplayMold.getLowLuminance(),hudDisplayMold.getHightLuminance())){
             return;
         }
-
+        if(HudBrightnessManager.getInstance().getNowBrightness()!=0){
+            HudManager.getInstance().getHudEvent().sendBrightnessAuto();
+        }
         lowLuminaceV=hudDisplayMold.getLowLuminance();
         hightLuminaceV=hudDisplayMold.getHightLuminance();
         HudManager.getInstance().getHudEvent().setLuminancePercent(lowLuminaceV,hightLuminaceV);
     }
 
-
-    public void setHudDisplayReflectorMold(HudDisplayReflectorMold hudDisplayReflectorMold){
-        if(null==hudDisplayReflectorMold){
-            return;
-        }
-        if(!checkDataCanUse(hudDisplayReflectorMold.getLowLuminance(),hudDisplayReflectorMold.getHightLuminance())){
-            return;
-        }
-        lowLuminaceV=hudDisplayReflectorMold.getLowLuminance();
-        hightLuminaceV=hudDisplayReflectorMold.getHightLuminance();
-        HudManager.getInstance().getHudEvent().setLuminancePercent(lowLuminaceV,hightLuminaceV);
-    }
 
 
 
