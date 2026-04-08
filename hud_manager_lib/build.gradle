@@ -4,11 +4,11 @@ plugins {
 
 android {
     namespace 'com.nrmyw.hud_manager_lib'
-    compileSdk 33
+    compileSdk 31
 
     defaultConfig {
         minSdk 24
-        targetSdk 33
+        targetSdk 31
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -29,6 +29,6 @@ android {
 dependencies {
     implementation 'com.github.lixiao-nb666:ble_event:1.0.38'
     implementation 'com.github.lixiao-nb666:ble_lib:1.0.73'
-    implementation 'com.github.lixiao-nb666:hud_data_lib:1.0.37'
-    implementation 'com.github.lixiao-nb666:hud_event_lib:1.0.82'
+    implementation 'com.github.lixiao-nb666:hud_data_lib:1.0.38'
+    implementation 'com.github.lixiao-nb666:hud_event_lib:1.0.83'
 }
