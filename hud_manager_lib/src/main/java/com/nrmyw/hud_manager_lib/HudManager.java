@@ -135,8 +135,10 @@ public class HudManager {
 
 
     public void init(Context context, HudSetManager.HudSetConfigListen hudSetConfigListen){
-        BleStatuEventSubscriptionSubject.getInstance().attach(bleStatuEventObserver);
-        HudRetrunEventSubscriptionSubject.getInstence().attach(hudRetrunEventObserver);
+        if(null!=hudSetConfigListen){
+            BleStatuEventSubscriptionSubject.getInstance().attach(bleStatuEventObserver);
+            HudRetrunEventSubscriptionSubject.getInstence().attach(hudRetrunEventObserver);
+        }
         NewBeeBleConfig.getInstance().init(true, HudConfig.mtu,HudConfig.serviceID,HudConfig.writeID,HudConfig.noticeID, HudDevice.getBleDeviceTypeList());
         NewBeeBleManager.getInstance().init(context);
         HudEventManager.getInstance().init(context);
