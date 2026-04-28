@@ -105,7 +105,9 @@ public class HudBrightnessManager {
     }
 
     public void setMinV(int minV) {
-        this.minV = minV;
+        if(minV==0||minV==1){
+            this.minV = minV;
+        }
     }
 
 
@@ -119,7 +121,12 @@ public class HudBrightnessManager {
         if(nowBrightness==AUTO_V){
             HudManager.getInstance().getHudEvent().sendBrightnessAuto();
         }else {
-            HudManager.getInstance().getHudEvent().sendBrightnessHand(nowBrightness);
+            if(nowBrightness>10){
+                HudManager.getInstance().getHudEvent().sendBrightnessHandDebug(nowBrightness);
+            }else {
+                HudManager.getInstance().getHudEvent().sendBrightnessHand(nowBrightness);
+            }
+
         }
     }
 }
