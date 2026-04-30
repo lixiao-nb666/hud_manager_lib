@@ -6,12 +6,13 @@ public class HudUserConfigBean implements Serializable {
 
         private int nowBrightnessV;
         private int brightnessMaxV=10;
-        private int brightnessMinV=10;
+        private int brightnessMinV=0;
 
         private int nowSoundV;
 
         private int deviceSoundStatu;
 
+        private int turnMCha=10;
     public int getNowBrightnessV() {
         return nowBrightnessV;
     }
@@ -21,14 +22,24 @@ public class HudUserConfigBean implements Serializable {
     }
 
     public int getBrightnessMaxV() {
+        if(brightnessMaxV>14){
+            brightnessMaxV=14;
+        }else if(brightnessMaxV<10){
+            brightnessMaxV=10;
+        }
         return brightnessMaxV;
     }
 
     public void setBrightnessMaxV(int brightnessMaxV) {
+
         this.brightnessMaxV = brightnessMaxV;
     }
 
     public int getBrightnessMinV() {
+        if(brightnessMinV<0||brightnessMinV>1){
+            brightnessMinV=0;
+        }
+
         return brightnessMinV;
     }
 
@@ -54,7 +65,13 @@ public class HudUserConfigBean implements Serializable {
         this.nowSoundV = nowSoundV;
     }
 
+    public int getTurnMCha() {
+        return turnMCha;
+    }
 
+    public void setTurnMCha(int turnMCha) {
+        this.turnMCha = turnMCha;
+    }
 
     @Override
     public String toString() {
@@ -63,6 +80,8 @@ public class HudUserConfigBean implements Serializable {
                 ", brightnessMaxV=" + brightnessMaxV +
                 ", brightnessMinV=" + brightnessMinV +
                 ", nowSoundV=" + nowSoundV +
+                ", deviceSoundStatu=" + deviceSoundStatu +
+                ", turnMCha=" + turnMCha +
                 '}';
     }
 }
