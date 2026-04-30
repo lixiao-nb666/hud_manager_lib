@@ -1,5 +1,7 @@
 package com.nrmyw.hud_manager_lib.bean;
 
+import com.nrmyw.hud_manager_lib.manager.set_child.HudBrightnessManager;
+
 import java.io.Serializable;
 
 public class HudUserConfigBean implements Serializable {
@@ -31,8 +33,13 @@ public class HudUserConfigBean implements Serializable {
     }
 
     public void setBrightnessMaxV(int brightnessMaxV) {
-
+        if(brightnessMaxV>14){
+            brightnessMaxV=14;
+        }else if(brightnessMaxV<10){
+            brightnessMaxV=10;
+        }
         this.brightnessMaxV = brightnessMaxV;
+        HudBrightnessManager.getInstance().setMaxV(this.brightnessMaxV);
     }
 
     public int getBrightnessMinV() {
@@ -66,10 +73,20 @@ public class HudUserConfigBean implements Serializable {
     }
 
     public int getTurnMCha() {
+        if(turnMCha>14){
+            turnMCha=14;
+        }else if(turnMCha<0){
+            turnMCha=0;
+        }
         return turnMCha;
     }
 
     public void setTurnMCha(int turnMCha) {
+        if(turnMCha>14){
+            turnMCha=14;
+        }else if(turnMCha<0){
+            turnMCha=0;
+        }
         this.turnMCha = turnMCha;
     }
 
