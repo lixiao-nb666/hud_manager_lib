@@ -51,7 +51,11 @@ public class HudUserConfigBean implements Serializable {
     }
 
     public void setBrightnessMinV(int brightnessMinV) {
+        if(brightnessMinV<0||brightnessMinV>1){
+            brightnessMinV=0;
+        }
         this.brightnessMinV = brightnessMinV;
+        HudBrightnessManager.getInstance().setMinV(this.brightnessMinV);
     }
 
     public int getDeviceSoundStatu() {

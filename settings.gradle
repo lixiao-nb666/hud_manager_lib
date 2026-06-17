@@ -7,9 +7,8 @@ pluginManagement {
         maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
         maven { url 'https://repo1.maven.org/maven2/' }
         maven { url 'https://jitpack.io' }
-        maven {
-            url = "https://devrepo.tmapadmin.com/repository/tmap-sdk-release/"
-        }
+        google()
+        mavenCentral()
     }
 }
 dependencyResolutionManagement {
@@ -21,9 +20,8 @@ dependencyResolutionManagement {
         maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
         maven { url 'https://repo1.maven.org/maven2/' }
         maven { url 'https://jitpack.io' }
-        maven {
-            url = "https://devrepo.tmapadmin.com/repository/tmap-sdk-release/"
-        }
+        google()
+        mavenCentral()
     }
 }
 rootProject.name = "hud_manager"

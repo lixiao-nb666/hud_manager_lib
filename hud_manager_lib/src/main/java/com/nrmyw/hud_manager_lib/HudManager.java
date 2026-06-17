@@ -34,19 +34,11 @@ public class HudManager {
             switch (bleStatu){
                 case CONNECTED:
                     HudSetManager.getInstance().nowConnectedSetConfig();
-                    HudBrightnessManager.getInstance().connectedToQue();
-                    HudDeviceSoundStatuManager.getInstance().connectedToQue();
-                    HudDeviceVersionStatuManager.getInstance().connectedToQue();
-                    HudSNCodeStatuManager.getInstance().connectedToQue();
-                    HudSoundManager.getInstance().connectedToQue();
+
                     break;
 
                 case DISCONNECTED:
-                    HudBrightnessManager.getInstance().clear();
-                    HudDeviceSoundStatuManager.getInstance().clear();
-                    HudDeviceVersionStatuManager.getInstance().clear();
-                    HudSNCodeStatuManager.getInstance().clear();
-                    HudSoundManager.getInstance().clear();
+
                     break;
             }
         }
