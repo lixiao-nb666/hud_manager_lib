@@ -187,9 +187,9 @@ public class HudManager {
         switch (hudDevice){
             case T700:
                 return HudConfig.getHudT700UpdateUrl(isDebug);
-            case T900:
-            case T900_1:
-            case T900_2:
+            case H5000:
+            case H5000_1:
+            case H5000_2:
                 return HudConfig.getHudT900UpdateUrl(isDebug);
             default:
                 return "";

@@ -57,12 +57,14 @@ public class HudSetManager {
                 HudManager.getInstance().getHudSetConfig().setHideIntervalSpeedUseWarningPointCmd(false);
                 break;
             case T900:
+            case T850:
+            case H5000:
                 //1设置图片画面
-                HudManager.getInstance().getHudSetConfig().getHudSetBean().setImageMaxW(150);
-                HudManager.getInstance().getHudSetConfig().getHudSetBean().setImageMaxH(238);//320
-                BleSendBitmapQualityType.HIGH.setZoomScaling(0.8f);
-                BleSendBitmapQualityType.HIGH.setQualityV(30);
-                HudManager.getInstance().getHudSetConfig().getHudSetBean().setBleSendBitmapQualityType(BleSendBitmapQualityType.HIGH);
+                HudManager.getInstance().getHudSetConfig().getHudSetBean().setImageMaxW(155);
+                HudManager.getInstance().getHudSetConfig().getHudSetBean().setImageMaxH(240);//320
+                BleSendBitmapQualityType.ULTRA_HIGH.setZoomScaling(0.8f);
+                BleSendBitmapQualityType.ULTRA_HIGH.setQualityV(75);
+                HudManager.getInstance().getHudSetConfig().getHudSetBean().setBleSendBitmapQualityType(BleSendBitmapQualityType.ULTRA_HIGH);
                 //2设置进度条
                 HudManager.getInstance().getHudSetConfig().getHudSetBean().setProgressMaxW(14);
                 HudManager.getInstance().getHudSetConfig().getHudSetBean().setProgressMaxH(238);
@@ -85,8 +87,8 @@ public class HudSetManager {
                 //1设置图片画面
                 HudManager.getInstance().getHudSetConfig().getHudSetBean().setImageMaxW(360);
                 HudManager.getInstance().getHudSetConfig().getHudSetBean().setImageMaxH(320);//320
-                BleSendBitmapQualityType.ULTRA_HIGH.setZoomScaling(0.7f);
-                BleSendBitmapQualityType.ULTRA_HIGH.setQualityV(30);
+                BleSendBitmapQualityType.ULTRA_HIGH.setZoomScaling(0.8f);
+                BleSendBitmapQualityType.ULTRA_HIGH.setQualityV(75);
                 HudManager.getInstance().getHudSetConfig().getHudSetBean().setBleSendBitmapQualityType(BleSendBitmapQualityType.ULTRA_HIGH);
                 //2设置进度条
                 HudManager.getInstance().getHudSetConfig().setProgressMaxW(22);
