@@ -63,7 +63,7 @@ public class HudSetManager {
                 HudManager.getInstance().getHudSetConfig().getHudSetBean().setImageMaxW(155);
                 HudManager.getInstance().getHudSetConfig().getHudSetBean().setImageMaxH(240);//320
                 BleSendBitmapQualityType.ULTRA_HIGH.setZoomScaling(0.8f);
-                BleSendBitmapQualityType.ULTRA_HIGH.setQualityV(75);
+                BleSendBitmapQualityType.ULTRA_HIGH.setQualityV(66);
                 HudManager.getInstance().getHudSetConfig().getHudSetBean().setBleSendBitmapQualityType(BleSendBitmapQualityType.ULTRA_HIGH);
                 //2设置进度条
                 HudManager.getInstance().getHudSetConfig().getHudSetBean().setProgressMaxW(14);
@@ -88,7 +88,7 @@ public class HudSetManager {
                 HudManager.getInstance().getHudSetConfig().getHudSetBean().setImageMaxW(360);
                 HudManager.getInstance().getHudSetConfig().getHudSetBean().setImageMaxH(320);//320
                 BleSendBitmapQualityType.ULTRA_HIGH.setZoomScaling(0.8f);
-                BleSendBitmapQualityType.ULTRA_HIGH.setQualityV(75);
+                BleSendBitmapQualityType.ULTRA_HIGH.setQualityV(66);
                 HudManager.getInstance().getHudSetConfig().getHudSetBean().setBleSendBitmapQualityType(BleSendBitmapQualityType.ULTRA_HIGH);
                 //2设置进度条
                 HudManager.getInstance().getHudSetConfig().setProgressMaxW(22);
