@@ -32,9 +32,29 @@ public class HudTurnTypeManager {
     }
 
     private int getNeedM(int vM){
-        vM=vM- HudUserSetConfig.getInstance().getUserConfigBean().getTurnMCha();
-        if(vM<0){
-            vM=0;
+        try {
+            if(vM<=HudUserSetConfig.TURN_M_CHA_CAN_USE&&HudUserSetConfig.getInstance().getUserConfigBean().getTurnMCha()!=0&&vM>1&&vM<HudUserSetConfig.getInstance().getUserConfigBean().getTurnMCha()){
+                if(vM<6){
+                    vM= 1;
+                }else if(vM<10){
+                    vM=  2;
+                }else if(vM<12){
+                    vM= 3;
+                }else if(vM<14){
+                    vM=  4;
+                }else if(vM<16){
+                    vM=  5;
+                }else if(vM<20){
+                    vM=  (int)(vM/2.0);
+                }else if(vM<25){
+                    vM= (int) (vM/1.5);
+                }else if(vM<31){
+                    vM= (int) (vM/1.3);
+                }else {
+                    vM= (int) (vM/1.2);
+                }
+            }
+        }catch (Exception e){
         }
         return vM;
     }
