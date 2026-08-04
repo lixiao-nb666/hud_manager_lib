@@ -19,16 +19,47 @@ public class HudTurnTypeManager {
         return hudTurnTypeManager;
     }
 
-    public void sendTurnType(HudTurnType var1, int var2){
 
+    public void sendTurnType(HudTurnType var1, int var2){
         var2=getNeedM(var2);
         HudManager.getInstance().getHudEvent().sendTurnType(var1,var2);
+        if(HudUserSetConfig.getInstance().getUserConfigBean().isTurnAutoFlicker()){
+            checkToFlicker(var1,var2);
+        }
+
     }
 
     public void sendTurnType(HudTurnType var1, int var2,HudTurnType var3, int var4){
         var2=getNeedM(var2);
         var4=getNeedM(var4);
         HudManager.getInstance().getHudEvent().sendTurnType(var1,var2,var3,var4);
+        if(HudUserSetConfig.getInstance().getUserConfigBean().isTurnAutoFlicker()){
+            checkToFlicker(var1,var2);
+        }
+    }
+
+    private HudTurnType lastTurnType;
+    private boolean nowIsFlicker;
+    private void checkToFlicker(HudTurnType var1, int var2){
+        if(null==var1){
+            return;
+        }
+        if(nowIsFlicker){
+            if(var1==HudTurnType.none||var2>100){
+                nowIsFlicker=false;
+                HudManager.getInstance().getHudEvent().iconFlicherClose();
+            }
+        }else {
+            if(var1!=HudTurnType.none&&var2<=100){
+                nowIsFlicker=true;
+                HudManager.getInstance().getHudEvent().iconFlicherOpen();
+            }
+        }
+
+
+
+
+
     }
 
     private int getNeedM(int vM){

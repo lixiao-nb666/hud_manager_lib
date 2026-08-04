@@ -16,6 +16,10 @@ public class HudUserConfigBean implements Serializable {
         private int deviceSoundStatu;
 
         private int turnMCha=10;
+
+        private boolean turnAutoFlicker=true;
+
+
     public int getNowBrightnessV() {
         return nowBrightnessV;
     }
@@ -95,6 +99,14 @@ public class HudUserConfigBean implements Serializable {
         this.turnMCha = turnMCha;
     }
 
+    public boolean isTurnAutoFlicker() {
+        return turnAutoFlicker;
+    }
+
+    public void setTurnAutoFlicker(boolean turnAutoFlicker) {
+        this.turnAutoFlicker = turnAutoFlicker;
+    }
+
     @Override
     public String toString() {
         return "HudUserConfigBean{" +
@@ -104,6 +116,7 @@ public class HudUserConfigBean implements Serializable {
                 ", nowSoundV=" + nowSoundV +
                 ", deviceSoundStatu=" + deviceSoundStatu +
                 ", turnMCha=" + turnMCha +
+                ", turnAutoFlicker=" + turnAutoFlicker +
                 '}';
     }
 }

@@ -10,6 +10,8 @@ public class HudUserSetConfig {
     public static final int TURN_M_CHA_MIN=0;
 
 
+
+
     private HudUserConfigBean userConfigBean;
     private HudUserSetConfig(){
 
