@@ -57,6 +57,10 @@ public class HudSpeedManager {
         countShowSpeedBj();
     }
 
+
+    private HudSpeedingTextType speedingTextType=HudSpeedingTextType.WRITE;
+    private HudSpeedingShowBJType speedingShowBJType=HudSpeedingShowBJType.NONE;
+    private long lastSendSpeedingTime;
     private void countShowSpeedBj(){
         if(!HudUserSetConfig.getInstance().getUserConfigBean().isCheckSpeeding()){
             return;
@@ -64,19 +68,34 @@ public class HudSpeedManager {
         if(limitSpeed1==0||lastSpeed==0){
             return;
         }
+        HudSpeedingTextType nowSpeedingTextType=HudSpeedingTextType.WRITE;
+        HudSpeedingShowBJType nowSpeedingShowBJType=HudSpeedingShowBJType.NONE;
         if(lastSpeed>limitSpeed1){
-            HudManager.getInstance().getHudEvent().sendSpeeding(HudSpeedingTextType.WRITE, HudSpeedingShowBJType.NONE);
+            nowSpeedingTextType=HudSpeedingTextType.WRITE;
+            nowSpeedingShowBJType=HudSpeedingShowBJType.NONE;
         }else {
             if(lastSpeed<limitSpeed1*1.2){
-                HudManager.getInstance().getHudEvent().sendSpeeding(HudSpeedingTextType.RED, HudSpeedingShowBJType.NONE);
+                nowSpeedingTextType=HudSpeedingTextType.RED;
+                nowSpeedingShowBJType=HudSpeedingShowBJType.NONE;
             }else if(lastSpeed<limitSpeed1*1.3){
-                HudManager.getInstance().getHudEvent().sendSpeeding(HudSpeedingTextType.RED, HudSpeedingShowBJType.RED_40);
+                nowSpeedingTextType=HudSpeedingTextType.RED;
+                nowSpeedingShowBJType=HudSpeedingShowBJType.RED_40;
             }else if(lastSpeed<limitSpeed1*1.4){
-                HudManager.getInstance().getHudEvent().sendSpeeding(HudSpeedingTextType.RED, HudSpeedingShowBJType.RED_55);
+                nowSpeedingTextType=HudSpeedingTextType.RED;
+                nowSpeedingShowBJType=HudSpeedingShowBJType.RED_55;
             }else {
-                HudManager.getInstance().getHudEvent().sendSpeeding(HudSpeedingTextType.RED, HudSpeedingShowBJType.RED_80);
+                nowSpeedingTextType=HudSpeedingTextType.RED;
+                nowSpeedingShowBJType=HudSpeedingShowBJType.RED_80;
+
             }
         }
+        if(speedingTextType==nowSpeedingTextType&&speedingShowBJType==nowSpeedingShowBJType&&System.currentTimeMillis()-lastSendSpeedingTime<3000){
+            return;
+        }
+        this.speedingTextType=nowSpeedingTextType;
+        this.speedingShowBJType=nowSpeedingShowBJType;
+        this.lastSendSpeedingTime=System.currentTimeMillis();
+        HudManager.getInstance().getHudEvent().sendSpeeding(nowSpeedingTextType, nowSpeedingShowBJType);
     }
 
 
