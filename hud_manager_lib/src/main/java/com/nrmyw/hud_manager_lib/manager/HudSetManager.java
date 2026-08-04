@@ -60,14 +60,17 @@ public class HudSetManager {
             case T850:
             case H5000:
                 //1设置图片画面
-                HudManager.getInstance().getHudSetConfig().getHudSetBean().setImageMaxW(155);
-                HudManager.getInstance().getHudSetConfig().getHudSetBean().setImageMaxH(240);//320
+                HudManager.getInstance().getHudSetConfig().getHudSetBean().setImageMaxW(180);
+                HudManager.getInstance().getHudSetConfig().getHudSetBean().setImageMaxH(216);
+
+
+
                 BleSendBitmapQualityType.ULTRA_HIGH.setZoomScaling(0.8f);
                 BleSendBitmapQualityType.ULTRA_HIGH.setQualityV(66);
                 HudManager.getInstance().getHudSetConfig().getHudSetBean().setBleSendBitmapQualityType(BleSendBitmapQualityType.ULTRA_HIGH);
                 //2设置进度条
                 HudManager.getInstance().getHudSetConfig().getHudSetBean().setProgressMaxW(14);
-                HudManager.getInstance().getHudSetConfig().getHudSetBean().setProgressMaxH(238);
+                HudManager.getInstance().getHudSetConfig().getHudSetBean().setProgressMaxH(216);
                 BleSendBitmapQualityType.PROGRESS.setQualityV(8);
                 BleSendBitmapQualityType.PROGRESS.setZoomScaling(1f);
                 HudManager.getInstance().getHudSetConfig().getHudSetBean().setBleSendProgressQualityType(BleSendBitmapQualityType.PROGRESS);
@@ -75,7 +78,7 @@ public class HudSetManager {
                 //3设置不能自动显示新旧转向图标
                 HudManager.getInstance().getHudSetConfig().getHudSetBean().setAutoChangerTrunTypeOldAndNew(false);
                 //4.设置能显示大警示图
-                HudManager.getInstance().getHudSetConfig().getHudSetBean().setNeedBigWarningPoint(true);
+                HudManager.getInstance().getHudSetConfig().getHudSetBean().setNeedBigWarningPoint(false);
                 //5.一个单图标的时候，显示大图标
                 HudManager.getInstance().getHudSetConfig().getHudSetBean().setOneShowBigWarningPoint(false);
                 //6.设置隐藏区间限速，使用警示图指令，而不是单独指令,只有这里和T800不一样
@@ -84,6 +87,7 @@ public class HudSetManager {
                 HudManager.getInstance().getHudSetConfig().setHideIntervalSpeedUseWarningPointCmd(false);
                 break;
             case T700_GUI3:
+            case T700:
                 //1设置图片画面
                 HudManager.getInstance().getHudSetConfig().getHudSetBean().setImageMaxW(360);
                 HudManager.getInstance().getHudSetConfig().getHudSetBean().setImageMaxH(320);//320
@@ -109,7 +113,7 @@ public class HudSetManager {
                 //7.设置自动隐藏区间限速
                 HudManager.getInstance().getHudSetConfig().setHideIntervalSpeedUseWarningPointCmd(false);
                 break;
-            case T700:
+
             default:
                 //1设置图片画面
                 HudManager.getInstance().getHudSetConfig().getHudSetBean().setImageMaxW(360);
