@@ -23,21 +23,21 @@ public enum HudDevice {
     T700_1("HUD-","T700-DATA",HudDeviceSendDataType.T700),
     T700_2("hud-","T700-data",HudDeviceSendDataType.T700),
 
-    H5000("H5000","DATA","700666",0x0643,HudDeviceSendDataType.T700_GUI3),
+    H5000("H5000","DATA","700666",0x0643,HudDeviceSendDataType.T850),
     H5000_1("HUD-","H5000-DATA",HudDeviceSendDataType.T850),
     H5000_2("hud-","H5000-data",HudDeviceSendDataType.T850),
 
-    T900("T900","DATA","700666",0x0643,HudDeviceSendDataType.T700_GUI3),
+    T900("T900","DATA","700666",0x0643,HudDeviceSendDataType.T850),
     T900_1("HUD-","T900-DATA",HudDeviceSendDataType.T850),
     T900_2("hud-","T900-data",HudDeviceSendDataType.T850),
 
-    T850("T850","DATA","700666",0x0643,HudDeviceSendDataType.T700_GUI3),
+    T850("T850","DATA","700666",0x0643,HudDeviceSendDataType.T850),
     T850_1("HUD-","T850-DATA",HudDeviceSendDataType.T850),
     T850_2("hud-","T850-data",HudDeviceSendDataType.T850),
 
 
-    HUD_T("HUD-","DATA",HudDeviceSendDataType.T700),
-    HUT_T("hud-","data",HudDeviceSendDataType.T700),
+    HUD_T("HUD-","DATA",HudDeviceSendDataType.T850),
+    HUT_T("hud-","data",HudDeviceSendDataType.T850),
     ;
     private String title;
     private String body;

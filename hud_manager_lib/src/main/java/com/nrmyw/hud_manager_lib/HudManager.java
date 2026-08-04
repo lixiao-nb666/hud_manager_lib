@@ -34,7 +34,6 @@ public class HudManager {
             switch (bleStatu){
                 case CONNECTED:
                     HudSetManager.getInstance().nowConnectedSetConfig();
-
                     break;
 
                 case DISCONNECTED:
