@@ -1,5 +1,6 @@
 package com.nrmyw.hud_manager_lib.manager.set_child;
 
+import com.nrmyw.hud_data_event_lib.HudEventManager;
 import com.nrmyw.hud_data_lib.type.speed.HudSpeedingShowBJType;
 import com.nrmyw.hud_data_lib.type.speed.HudSpeedingTextType;
 import com.nrmyw.hud_manager_lib.HudManager;
@@ -99,6 +100,25 @@ public class HudSpeedManager {
         this.speedingShowBJType=nowSpeedingShowBJType;
         this.lastSendSpeedingTime=System.currentTimeMillis();
         HudManager.getInstance().getHudEvent().sendSpeeding(nowSpeedingTextType, nowSpeedingShowBJType);
+    }
+
+
+    public void setIntervalSpeed(int intervalSpeed,int interval ,int averageSpeed){
+        this.limitSpeed1=intervalSpeed;
+        double km=interval/1000;
+        double needTimeH=km/averageSpeed;
+        int needM= (int) (needTimeH*60);
+//            int timeM=km/averageSpeed*60;
+        int timeHours=needM/60;
+        int timeMin=needM%60;
+        HudEventManager.getInstance().getHudEvent().sendIntervalSpeed(intervalSpeed,interval,averageSpeed,timeHours,timeMin);
+        countShowSpeedBj();
+//            if(interval<50){
+//                needCheckIntervalSpeed=true;
+//                lastNeedCheckTime=System.currentTimeMillis();
+//            }else {
+//                needCheckIntervalSpeed=false;
+//            }
     }
 
 
