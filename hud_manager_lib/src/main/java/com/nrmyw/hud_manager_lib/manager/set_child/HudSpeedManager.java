@@ -26,34 +26,37 @@ public class HudSpeedManager {
     private int limitSpeed1;
     private int limitSpeed2;
     public void setNowSpeed(int nowSpeed){
-        if(lastSendSpeedTime!=0&&lastSpeed==nowSpeed&&System.currentTimeMillis()-lastSendSpeedTime<3000){
-            return;
+        if(lastSendSpeedTime!=0&&lastSpeed==nowSpeed&&System.currentTimeMillis()-lastSendSpeedTime<2000){
+            //数据一致的情况下，先不做处理
+        }else {
+            this.lastSpeed=nowSpeed;
+            HudManager.getInstance().getHudEvent().sendNowSpeed(this.lastSpeed);
+            lastSpeed=nowSpeed;
+            lastSendSpeedTime=System.currentTimeMillis();
         }
-        this.lastSpeed=nowSpeed;
-        HudManager.getInstance().getHudEvent().sendNowSpeed(this.lastSpeed);
-        lastSpeed=nowSpeed;
-        lastSendSpeedTime=System.currentTimeMillis();
         countShowSpeedBj();
     }
 
 
     public void setLimitSpeedToCountShowSpeedBj(int limitSpeed1){
         if(this.limitSpeed1==limitSpeed1&&this.limitSpeed2==0){
-            return;
+            //说明数据一致先不处理
+        }else {
+            this.limitSpeed1=limitSpeed1;
+            this.limitSpeed2=0;
+            HudManager.getInstance().getHudEvent().sendNowSpeed(lastSpeed,this.limitSpeed1,this.limitSpeed2);
         }
-        this.limitSpeed1=limitSpeed1;
-        this.limitSpeed2=0;
-        HudManager.getInstance().getHudEvent().sendNowSpeed(lastSpeed,this.limitSpeed1,this.limitSpeed2);
         countShowSpeedBj();
     }
 
     public void setLimitSpeedToCountShowSpeedBj(int limitSpeed1,int limitSpeed2){
         if(this.limitSpeed1==limitSpeed1&&this.limitSpeed2==limitSpeed2){
-            return;
+            //说明数据一致先不处理
+        }else {
+            this.limitSpeed1=limitSpeed1;
+            this.limitSpeed2=limitSpeed2;
+            HudManager.getInstance().getHudEvent().sendNowSpeed(lastSpeed,this.limitSpeed1,this.limitSpeed2);
         }
-        this.limitSpeed1=limitSpeed1;
-        this.limitSpeed2=limitSpeed2;
-        HudManager.getInstance().getHudEvent().sendNowSpeed(lastSpeed,this.limitSpeed1,this.limitSpeed2);
         countShowSpeedBj();
     }
 
@@ -65,31 +68,31 @@ public class HudSpeedManager {
         if(!HudUserSetConfig.getInstance().getUserConfigBean().isCheckSpeeding()){
             return;
         }
-        if(limitSpeed1==0||lastSpeed==0){
-            return;
-        }
         HudSpeedingTextType nowSpeedingTextType=HudSpeedingTextType.WRITE;
         HudSpeedingShowBJType nowSpeedingShowBJType=HudSpeedingShowBJType.NONE;
-        if(lastSpeed>limitSpeed1){
-            nowSpeedingTextType=HudSpeedingTextType.WRITE;
-            nowSpeedingShowBJType=HudSpeedingShowBJType.NONE;
+        if(limitSpeed1==0){
+            //默认参数即可
         }else {
-            if(lastSpeed<limitSpeed1*1.2){
-                nowSpeedingTextType=HudSpeedingTextType.RED;
-                nowSpeedingShowBJType=HudSpeedingShowBJType.NONE;
-            }else if(lastSpeed<limitSpeed1*1.3){
-                nowSpeedingTextType=HudSpeedingTextType.RED;
-                nowSpeedingShowBJType=HudSpeedingShowBJType.RED_40;
-            }else if(lastSpeed<limitSpeed1*1.4){
-                nowSpeedingTextType=HudSpeedingTextType.RED;
-                nowSpeedingShowBJType=HudSpeedingShowBJType.RED_55;
+            if(lastSpeed<limitSpeed1){
+                //默认参数即可
             }else {
-                nowSpeedingTextType=HudSpeedingTextType.RED;
-                nowSpeedingShowBJType=HudSpeedingShowBJType.RED_80;
+                if(lastSpeed<limitSpeed1*1.2){
+                    nowSpeedingTextType=HudSpeedingTextType.RED;
+                    nowSpeedingShowBJType=HudSpeedingShowBJType.NONE;
+                }else if(lastSpeed<limitSpeed1*1.3){
+                    nowSpeedingTextType=HudSpeedingTextType.RED;
+                    nowSpeedingShowBJType=HudSpeedingShowBJType.RED_40;
+                }else if(lastSpeed<limitSpeed1*1.4){
+                    nowSpeedingTextType=HudSpeedingTextType.RED;
+                    nowSpeedingShowBJType=HudSpeedingShowBJType.RED_55;
+                }else {
+                    nowSpeedingTextType=HudSpeedingTextType.RED;
+                    nowSpeedingShowBJType=HudSpeedingShowBJType.RED_80;
 
+                }
             }
         }
-        if(speedingTextType==nowSpeedingTextType&&speedingShowBJType==nowSpeedingShowBJType&&System.currentTimeMillis()-lastSendSpeedingTime<3000){
+        if(speedingTextType==nowSpeedingTextType&&speedingShowBJType==nowSpeedingShowBJType&&System.currentTimeMillis()-lastSendSpeedingTime<2000){
             return;
         }
         this.speedingTextType=nowSpeedingTextType;
