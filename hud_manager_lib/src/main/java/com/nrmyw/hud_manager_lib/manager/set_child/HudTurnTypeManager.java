@@ -67,15 +67,15 @@ public class HudTurnTypeManager {
             needFlicker=true;
         }
         if(needFlicker==nowIsFlicker) {
-   
+
             return;
         }
         nowIsFlicker=needFlicker;
         lastSendFlickerTime=System.currentTimeMillis();
         if(nowIsFlicker){
-            HudManager.getInstance().getHudEvent().iconFlicherClose();
-        }else {
             HudManager.getInstance().getHudEvent().iconFlicherOpen();
+        }else {
+            HudManager.getInstance().getHudEvent().iconFlicherClose();
         }
     }
 
