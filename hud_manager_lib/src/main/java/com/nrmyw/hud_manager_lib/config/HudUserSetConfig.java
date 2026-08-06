@@ -5,8 +5,8 @@ import com.nrmyw.hud_manager_lib.bean.HudUserConfigBean;
 public class HudUserSetConfig {
     private static HudUserSetConfig hudUserSetConfig;
 
-    public static final int TURN_M_CHA_CAN_USE=40;
-    public static final int TURN_M_CHA_MAX=20;
+    public static final int TURN_M_CHA_CAN_USE=66;
+    public static final int TURN_M_CHA_MAX=66;
     public static final int TURN_M_CHA_MIN=0;
 
 

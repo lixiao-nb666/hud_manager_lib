@@ -74,7 +74,7 @@ public class HudSpeedManager {
         if(limitSpeed1==0){
             //默认参数即可
         }else {
-            if(lastSpeed<limitSpeed1){
+            if(lastSpeed<=limitSpeed1){
                 //默认参数即可
             }else {
                 if(lastSpeed<limitSpeed1*1.2){

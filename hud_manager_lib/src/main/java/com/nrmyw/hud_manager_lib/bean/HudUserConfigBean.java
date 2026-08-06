@@ -15,7 +15,7 @@ public class HudUserConfigBean implements Serializable {
 
         private int deviceSoundStatu;
 
-        private int turnMCha=10;
+        private int turnMCha=HudUserSetConfig.TURN_M_CHA_MAX;
 
         private boolean turnAutoFlicker=true;
 

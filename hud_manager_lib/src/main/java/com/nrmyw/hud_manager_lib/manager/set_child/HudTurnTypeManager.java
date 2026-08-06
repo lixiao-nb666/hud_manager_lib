@@ -39,51 +39,93 @@ public class HudTurnTypeManager {
     }
 
     private HudTurnType lastTurnType;
+    private int startDis;
+    private int flickerDis=100;
     private boolean nowIsFlicker;
+    private long lastSendFlickerTime;
     private void checkToFlicker(HudTurnType var1, int var2){
         if(null==var1){
             return;
         }
-        if(nowIsFlicker){
-            if(var1==HudTurnType.none||var2>100){
-                nowIsFlicker=false;
-                HudManager.getInstance().getHudEvent().iconFlicherClose();
-            }
+        //先计算闪烁开始的距离
+        if(null==lastTurnType||lastTurnType!=var1){
+            lastTurnType=var1;
+            startDis=var2;
+            countFlickerDis();
         }else {
-            if(var1!=HudTurnType.none&&var2<=100){
-                nowIsFlicker=true;
-                HudManager.getInstance().getHudEvent().iconFlicherOpen();
+            if(var2>startDis){
+                startDis=var2;
+                countFlickerDis();
             }
         }
+        if(flickerDis<100){
+            flickerDis=100;
+        }
+        //然后计算是否需要闪烁
+        boolean needFlicker=false;
+        if(var1!=HudTurnType.none&&var2<=flickerDis){
+            needFlicker=true;
+        }
+        if(needFlicker==nowIsFlicker) {
+   
+            return;
+        }
+        nowIsFlicker=needFlicker;
+        lastSendFlickerTime=System.currentTimeMillis();
+        if(nowIsFlicker){
+            HudManager.getInstance().getHudEvent().iconFlicherClose();
+        }else {
+            HudManager.getInstance().getHudEvent().iconFlicherOpen();
+        }
+    }
 
-
-
-
-
+    private void countFlickerDis(){
+        flickerDis=100;
+        if(startDis>40000){
+            flickerDis=2000;
+        } else if(startDis>20000){
+            flickerDis=1200;
+        }else if(startDis>10000){
+            flickerDis=666;
+        }else if(startDis>5000){
+            flickerDis=200;
+        }else if(startDis>2000){
+            flickerDis=150;
+        }
     }
 
     private int getNeedM(int vM){
         try {
-            if(vM<=HudUserSetConfig.TURN_M_CHA_CAN_USE&&HudUserSetConfig.getInstance().getUserConfigBean().getTurnMCha()!=0&&vM>1&&vM<HudUserSetConfig.getInstance().getUserConfigBean().getTurnMCha()){
-                if(vM<6){
-                    vM= 1;
-                }else if(vM<10){
-                    vM=  2;
-                }else if(vM<12){
-                    vM= 3;
-                }else if(vM<14){
-                    vM=  4;
-                }else if(vM<16){
-                    vM=  5;
-                }else if(vM<20){
-                    vM=  (int)(vM/2.0);
-                }else if(vM<25){
-                    vM= (int) (vM/1.5);
-                }else if(vM<31){
-                    vM= (int) (vM/1.3);
-                }else {
-                    vM= (int) (vM/1.2);
-                }
+//            &&vM<HudUserSetConfig.getInstance().getUserConfigBean().getTurnMCha()
+            if(HudUserSetConfig.getInstance().getUserConfigBean().getTurnMCha()==0||vM>HudUserSetConfig.getInstance().getUserConfigBean().getTurnMCha()){
+                return vM;
+            }
+            if(vM>HudUserSetConfig.TURN_M_CHA_CAN_USE){
+                return vM;
+            }
+            if(vM<1){
+                return 0;
+            }
+            if(vM<=6){
+                vM= 1;
+            }else if(vM<=10){
+                vM=  2;
+            }else if(vM<=16){
+                vM= 4;
+            }else if(vM<=24){
+                vM= 7;
+            }else if(vM<=30){
+                //显示范围值为： 15-10
+                vM= (int) (vM/2);
+            }else if(vM<=40){
+                //显示范围值为： 26-20
+                vM= (int) (vM/1.5);
+            }else if(vM<=50){
+                //显示范围值为： 38-31
+                vM= (int) (vM/1.3);
+            }else {
+                //显示范围值为：55-42
+                vM= (int) (vM/1.2);
             }
         }catch (Exception e){
         }
