@@ -11,7 +11,8 @@ import java.util.List;
 public enum HudDevice {
     T800("T800","data", HudDeviceSendDataType.T800),
 
-    T800_1("T800","DATA",HudDeviceSendDataType.T800),
+    HUYNEW_AR_DEBUG("T800","DATA",HudDeviceSendDataType.T800),
+    HUYNEW_AR("HUYNEW","DATA",HudDeviceSendDataType.T800),
 
     T3000("T3000","DATA", HudDeviceSendDataType.T800),
     T3000_1("T3000","data", HudDeviceSendDataType.T800),
