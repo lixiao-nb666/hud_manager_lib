@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.newbee.ble_lib.NewBeeBleManager;
 
+import com.nrmyw.ble_event_lib.bean.BleDeviceBean;
 import com.nrmyw.ble_event_lib.config.NewBeeBleConfig;
 import com.nrmyw.ble_event_lib.send.BleEventObserver;
 
@@ -131,9 +132,11 @@ public class HudManager {
             HudRetrunEventSubscriptionSubject.getInstence().attach(hudRetrunEventObserver);
         }
         NewBeeBleConfig.getInstance().init(true, HudConfig.mtu,HudConfig.serviceID,HudConfig.writeID,HudConfig.noticeID, HudDevice.getBleDeviceTypeList());
+        NewBeeBleConfig.getInstance().setDisconnectAutoConnect(true);
         NewBeeBleManager.getInstance().init(context);
         HudEventManager.getInstance().init(context);
         HudSetManager.getInstance().setSetConfigListen(hudSetConfigListen);
+
     }
 
 
@@ -157,6 +160,11 @@ public class HudManager {
     public HudDevice getHudDevice(){
         return HudDevice.getBleDeviceType(NewBeeBleManager.getInstance().getNowUseBleDevice());
     }
+
+    public BleDeviceBean getBleDevice(){
+        return NewBeeBleManager.getInstance().getNowUseBleDevice();
+    }
+
 
     public BleEventObserver getBleEvent(){
        return NewBeeBleManager.getInstance().getEventImp();
