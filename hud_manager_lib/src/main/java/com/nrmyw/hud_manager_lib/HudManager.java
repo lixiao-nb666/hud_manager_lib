@@ -8,6 +8,7 @@ import com.nrmyw.ble_event_lib.bean.BleDeviceBean;
 import com.nrmyw.ble_event_lib.config.NewBeeBleConfig;
 import com.nrmyw.ble_event_lib.send.BleEventObserver;
 
+import com.nrmyw.ble_event_lib.send.BleEventSubscriptionSubject;
 import com.nrmyw.ble_event_lib.statu.BleStatu;
 import com.nrmyw.ble_event_lib.statu.BleStatuEventObserver;
 import com.nrmyw.ble_event_lib.statu.BleStatuEventSubscriptionSubject;
@@ -163,6 +164,10 @@ public class HudManager {
 
     public BleDeviceBean getBleDevice(){
         return NewBeeBleManager.getInstance().getNowUseBleDevice();
+    }
+
+    public void setDefBleDevice(BleDeviceBean bleDevice){
+        BleEventSubscriptionSubject.getInstance().setDefBleDevice(bleDevice);
     }
 
 
