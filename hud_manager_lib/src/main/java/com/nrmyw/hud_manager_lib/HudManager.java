@@ -167,7 +167,8 @@ public class HudManager {
     }
 
     public void setDefBleDevice(BleDeviceBean bleDevice){
-        BleEventSubscriptionSubject.getInstance().setDefBleDevice(bleDevice);
+//        BleEventSubscriptionSubject.getInstance().setDefBleDevice(bleDevice);
+        NewBeeBleManager.getInstance().setShareBleDevice(bleDevice);
     }
 
 
