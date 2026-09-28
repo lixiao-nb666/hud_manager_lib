@@ -27,4 +27,19 @@ public class DistanceToHudUtil {
             return distance;
         }
     }
+
+
+    public static int getTmapSecondTurnTypeDistance(int distance) {
+        if (distance >= 1000) {
+            float km = distance / 1000f;
+            if (km >= 10) {
+                return ((int) km) *1000;
+            } else {
+                return (int) ((int) (km * 10 - 0.5f) / 10f*1000);
+            }
+        } else {
+            return distance;
+        }
+    }
+
 }

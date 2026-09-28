@@ -81,7 +81,8 @@ public class HudSetManager {
                 //6.设置隐藏区间限速，使用警示图指令，而不是单独指令,只有这里和T800不一样
                 HudManager.getInstance().getHudSetConfig().setHideIntervalSpeedUseWarningPointCmd(false);
                 //7.设置自动隐藏区间限速
-                HudManager.getInstance().getHudSetConfig().setAutoHideIntervalSpeed(false);
+                HudManager.getInstance().getHudSetConfig().setAutoHideIntervalSpeed(true);
+                HudManager.getInstance().getHudSetConfig().getHudSetBean().setAutoHideNotifiction(true);
                 break;
             case T700_GUI3:
             case T700:
