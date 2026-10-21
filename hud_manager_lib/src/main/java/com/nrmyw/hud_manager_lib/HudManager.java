@@ -18,6 +18,7 @@ import com.nrmyw.hud_data_event_lib.config.HudSetConfig;
 import com.nrmyw.hud_data_lib.config.HudConfig;
 import com.nrmyw.hud_data_lib.event.retrun.HudRetrunEventObserver;
 import com.nrmyw.hud_data_lib.event.retrun.HudRetrunEventSubscriptionSubject;
+import com.nrmyw.hud_manager_lib.config.HudUrlConfig;
 import com.nrmyw.hud_manager_lib.hud.HudDataEvent;
 import com.nrmyw.hud_manager_lib.manager.set_child.HudBrightnessManager;
 import com.nrmyw.hud_manager_lib.manager.set_child.HudDeviceSoundStatuManager;
@@ -199,11 +200,18 @@ public class HudManager {
         }
         switch (hudDevice){
             case T700:
-                return HudConfig.getHudT700UpdateUrl(isDebug);
+                return HudUrlConfig.getHudT700UpdateUrl(isDebug);
             case H5000:
             case H5000_1:
             case H5000_2:
-                return HudConfig.getHudT900UpdateUrl(isDebug);
+            case T850:
+            case T850_1:
+            case T850_2:
+            case T900:
+            case T900_1:
+            case T900_2:
+
+                return HudUrlConfig.getHudT900UpdateUrl(isDebug);
             default:
                 return "";
         }

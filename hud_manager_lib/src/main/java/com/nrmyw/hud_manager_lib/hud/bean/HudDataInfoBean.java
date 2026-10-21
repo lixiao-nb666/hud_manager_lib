@@ -2,6 +2,7 @@ package com.nrmyw.hud_manager_lib.hud.bean;
 
 
 
+import com.nrmyw.hud_data_lib.type.HudCmdType;
 import com.nrmyw.hud_manager_lib.hud.bean.intervalspeed.HudIntervalSpeedBean;
 import com.nrmyw.hud_manager_lib.hud.bean.lane.HudLaneInfoBean;
 import com.nrmyw.hud_manager_lib.hud.bean.lane.HudNowLaneBean;
