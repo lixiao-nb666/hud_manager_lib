@@ -61,6 +61,9 @@
 
     </LinearLayout>
 
+
+
+
     <LinearLayout
         android:id="@+id/ll_bg_2"
         android:layout_width="wrap_content"
@@ -90,7 +93,11 @@
 
 
 
-
+    <Button
+        android:id="@+id/bt_to_factory_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="进入工厂测试模式"/>
 
 
 </LinearLayout>

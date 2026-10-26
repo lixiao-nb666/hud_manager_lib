@@ -1,6 +1,9 @@
 package com.nrmyw.hud_manager.activity;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,15 +13,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.newbee.ble_lib.NewBeeBleManager;
 import com.newbee.bulid_lib.mybase.activity.BaseCompatActivity;
+import com.newbee.erweima_lib.zxing.app.CaptureActivity;
+import com.newbee.erweima_lib.zxing.decoding.Intents;
+import com.newbee.erweima_lib.zxing.util.ScanUtil;
+import com.newbee.erweima_lib.zxing.util.ZXingUtils;
 import com.nrmyw.ble_event_lib.statu.BleStatu;
 import com.nrmyw.ble_event_lib.statu.BleStatuEventObserver;
 import com.nrmyw.ble_event_lib.statu.BleStatuEventSubscriptionSubject;
 import com.nrmyw.hud_manager.R;
 import com.nrmyw.hud_manager.activity.t800.T800BleDataTestActivity;
+
 import com.nrmyw.hud_manager_lib.HudManager;
 import com.nrmyw.hud_manager_lib.type.HudDevice;
 
@@ -68,7 +81,7 @@ public class MainActivity extends BaseCompatActivity {
     private LinearLayout bg1,bg2;
     private TextView bleNameTV,bleConnectTV,bleStatuTV;
 //    ,disconnectedBT
-    private Button initBT,searchBT,bleSetBT,sendTestBT,startGaoDeBT;
+    private Button initBT,searchBT,bleSetBT,sendTestBT,startGaoDeBT,toFactoryBT;
     private View.OnClickListener onClickListener=new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -85,10 +98,19 @@ public class MainActivity extends BaseCompatActivity {
                 case R.id.bt_send_test:
                     toActivity(T800BleDataTestActivity.class);
                     break;
+                case R.id.bt_to_gaode_t:
 
+
+                    break;
+                case R.id.bt_to_factory_test:
+                    toActivity(HudFactoryTestActivity.class);
+                    break;
             }
         }
     };
+
+
+
 
     @Override
     public int getViewLayoutRsId() {
@@ -107,12 +129,17 @@ public class MainActivity extends BaseCompatActivity {
         bleSetBT=findViewById(R.id.bt_ble_set);
         sendTestBT=findViewById(R.id.bt_send_test);
         startGaoDeBT=findViewById(R.id.bt_to_gaode_t);
+        toFactoryBT=findViewById(R.id.bt_to_factory_test);
         initBT.setOnClickListener(onClickListener);
         searchBT.setOnClickListener(onClickListener);
         bleSetBT.setOnClickListener(onClickListener);
         sendTestBT.setOnClickListener(onClickListener);
         startGaoDeBT.setOnClickListener(onClickListener);
+        toFactoryBT.setOnClickListener(onClickListener);
     }
+
+
+
 
     @Override
     public void initData() {

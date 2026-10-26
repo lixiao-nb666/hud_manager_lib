@@ -42,6 +42,7 @@ import com.nrmyw.hud_data_lib.type.warningproint.HudWarningPointType;
 import com.nrmyw.hud_data_lib.type.yellow_statu.HudYellowStatuBjType;
 import com.nrmyw.hud_manager.R;
 import com.nrmyw.hud_manager.util.BleByteUtil;
+import com.nrmyw.hud_manager.util.TestUtil;
 import com.nrmyw.hud_manager_lib.HudManager;
 
 import java.nio.charset.StandardCharsets;
@@ -313,14 +314,7 @@ public class T800BleDataTestActivity extends BaseCompatActivity {
 //                    HudCmdDataUtil.autoGetHipassL=!T800CmdDataUtil.autoGetHipassL;
                     break;
                 case LaneInformation_hi_pass_1:
-                    HudLaneHiPassCountBean t800LaneHiPassCountBean=new HudLaneHiPassCountBean();
-                    int lihpr=RandomUtil.getInstance().getRandomInt(8)+1;
-                    for(int i=0;i<lihpr;i++){
-                        int nowRi=RandomUtil.getInstance().getRandomInt(20)+1;
-                        t800LaneHiPassCountBean.add(nowRi);
-                    }
-
-                    HudManager.getInstance().getHudEvent().sendLaneHiPass(t800LaneHiPassCountBean);
+                    TestUtil.testHiLane();
                     break;
                 case LaneInformation_hi_pass_2:
                     HudLaneHiPassCountBean t800LaneHiPassCountBean2=new HudLaneHiPassCountBean();
@@ -445,10 +439,10 @@ public class T800BleDataTestActivity extends BaseCompatActivity {
                     if(yellowStatuStyle>4){
                         yellowStatuStyle=1;
                     }
-                    HudManager.getInstance().getHudEvent().setYellowStatu(HudYellowStatuBjType.values()[yellowStatuStyle]);
+                    HudManager.getInstance().getHudEvent().setTitleYellowStatu(HudYellowStatuBjType.values()[yellowStatuStyle]);
                     break;
                 case hide_Yellow_Statu:
-                    HudManager.getInstance().getHudEvent().setYellowStatu(HudYellowStatuBjType.HIDE);
+                    HudManager.getInstance().getHudEvent().setTitleYellowStatu(HudYellowStatuBjType.HIDE);
                     break;
 
                 case icon_flicker_open:

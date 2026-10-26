@@ -11,7 +11,7 @@ android {
         minSdk 24
         targetSdk 32
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.1"
 
 
     }
@@ -32,7 +32,11 @@ android {
         debug {
             minifyEnabled false
             signingConfig signingConfigs.release
-
+            android.applicationVariants.all { variant ->
+                variant.outputs.all {
+                    outputFileName = "hud_manager-${variant.name}-${variant.versionName}.apk"
+                }
+            }
         }
 
         release {
@@ -44,13 +48,17 @@ android {
             minifyEnabled false
             //签名配置
             signingConfig signingConfigs.release
-
+            android.applicationVariants.all { variant ->
+                variant.outputs.all {
+                    outputFileName = "hud_manager-${variant.name}-${variant.versionName}.apk"
+                }
+            }
 
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 }
 
@@ -60,9 +68,14 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'com.github.lixiao-nb666:build_lib:1.1.4'
     implementation 'com.github.lixiao-nb666:welcome_activity_lib:1.0.0'
-    implementation 'com.github.lixiao-nb666:ble_event:1.0.38'
-    implementation 'com.github.lixiao-nb666:ble_lib:1.0.76'
-    implementation 'com.github.lixiao-nb666:hud_data_lib:1.0.40'
-    implementation 'com.github.lixiao-nb666:hud_event_lib:1.0.87'
-    implementation 'com.github.lixiao-nb666:hud_manager_lib:1.0.43'
+    implementation 'com.github.lixiao-nb666:ble_event:1.0.41'
+    implementation 'com.github.lixiao-nb666:ble_lib:1.1.4'
+    implementation 'com.github.lixiao-nb666:hud_data_lib:1.0.76'
+    implementation 'com.github.lixiao-nb666:hud_event_lib:1.1.35'
+    implementation 'com.github.lixiao-nb666:hud_manager_lib:1.1.4'
+
+    implementation 'com.google.zxing:core:3.3.3'
+    implementation 'com.github.lixiao-nb666:erweima_lib:1.0.0'
+
+
 }
