@@ -29,6 +29,8 @@ import com.nrmyw.hud_manager_lib.manager.set_child.HudSoundManager;
 import com.nrmyw.hud_manager_lib.manager.HudSetManager;
 import com.nrmyw.hud_manager_lib.type.HudDevice;
 
+import java.util.List;
+
 public class HudManager {
     private static HudManager hudManager;
     private BleStatuEventObserver bleStatuEventObserver=new BleStatuEventObserver() {
@@ -124,24 +126,30 @@ public class HudManager {
     }
 
     public void init(Context context){
-        init(context,null);
+        init(context,null,HudDevice.getBleDeviceTypeList());
+    }
+
+    public void init(Context context, List<BleDeviceBean> canUseBleDeviceList){
+        init(context,null,canUseBleDeviceList);
     }
 
 
     public void init(Context context, HudSetManager.HudSetConfigListen hudSetConfigListen){
+        init(context,hudSetConfigListen,HudDevice.getBleDeviceTypeList());
+    }
+
+    public void init(Context context, HudSetManager.HudSetConfigListen hudSetConfigListen, List<BleDeviceBean> canUseBleDeviceList){
         if(null!=hudSetConfigListen){
             BleStatuEventSubscriptionSubject.getInstance().attach(bleStatuEventObserver);
             HudRetrunEventSubscriptionSubject.getInstence().attach(hudRetrunEventObserver);
         }
-        NewBeeBleConfig.getInstance().init(true, HudConfig.mtu,HudConfig.serviceID,HudConfig.writeID,HudConfig.noticeID, HudDevice.getBleDeviceTypeList());
+        NewBeeBleConfig.getInstance().init(true, HudConfig.mtu,HudConfig.serviceID,HudConfig.writeID,HudConfig.noticeID, canUseBleDeviceList);
         NewBeeBleConfig.getInstance().setDisconnectAutoConnect(true);
         NewBeeBleManager.getInstance().init(context);
         HudEventManager.getInstance().init(context);
         HudSetManager.getInstance().setSetConfigListen(hudSetConfigListen);
 
     }
-
-
 
     public void close(){
         NewBeeBleManager.getInstance().close();
@@ -210,7 +218,6 @@ public class HudManager {
             case T900:
             case T900_1:
             case T900_2:
-
                 return HudUrlConfig.getHudT900UpdateUrl(isDebug);
             default:
                 return "";

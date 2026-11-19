@@ -1,0 +1,25 @@
+<resources>
+    <string name="test_send_null">发送为空!</string>
+    <string name="test_length">长度</string>
+    <string name="test_need_camera">需要相机权限以使用扫码功能</string>
+    <string name="test_connected">已连接</string>
+    <string name="test_disconnected">断开连接</string>
+    <string name="test_factory_testing">工厂测试</string>
+    <string name="test_check_version">检查版本</string>
+    <string name="test_check_sn">查询SN</string>
+    <string name="test_scan_get_sn">扫码获取SN</string>
+    <string name="test_rewrite_sn">重写SN</string>
+    <string name="test_light_start">光感测试开始</string>
+    <string name="test_light_stop">光感测试结束</string>
+    <string name="test_start_data_test">开始数据测试</string>
+    <string name="test_stop_data_test">停止数据测试</string>
+    <string name="test_color_change">工厂老化模式（颜色变化）</string>
+    <string name="test_brightness_auto">自动亮度</string>
+    <string name="test_brightness_a">亮度 +</string>
+    <string name="test_brightness_d">亮度 -</string>
+    <string name="test_brightness_1">亮度 1</string>
+    <string name="test_brightness_10">亮度 10</string>
+    <string name="test_enter_factory_test_mold">进入工厂测试模式</string>
+    <string name="test_sn_check">SN效验码 : </string>
+    <string name="test_version_check">版本校验码 : </string>
+</resources>

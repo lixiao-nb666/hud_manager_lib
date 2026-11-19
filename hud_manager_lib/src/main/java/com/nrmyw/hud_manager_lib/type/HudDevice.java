@@ -24,7 +24,7 @@ public enum HudDevice {
     T700_1("HUD-","T700-DATA",HudDeviceSendDataType.T700),
     T700_2("hud-","T700-data",HudDeviceSendDataType.T700),
 
-    T850("T850","DATA","700666",0x0643,HudDeviceSendDataType.T850),
+    T850("T850","DATA","700666",0x0645,HudDeviceSendDataType.T850),
     T850_1("HUD-","T850-DATA",HudDeviceSendDataType.T850),
     T850_2("hud-","T850-data",HudDeviceSendDataType.T850),
 

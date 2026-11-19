@@ -11,9 +11,7 @@ android {
         minSdk 24
         targetSdk 32
         versionCode 1
-        versionName "1.0.1"
-
-
+        versionName "1.0.8"
     }
 
     signingConfigs {
@@ -72,10 +70,11 @@ dependencies {
     implementation 'com.github.lixiao-nb666:ble_lib:1.1.4'
     implementation 'com.github.lixiao-nb666:hud_data_lib:1.0.76'
     implementation 'com.github.lixiao-nb666:hud_event_lib:1.1.35'
-    implementation 'com.github.lixiao-nb666:hud_manager_lib:1.1.4'
 
+    implementation 'com.github.lixiao-nb666:sava_data_lib:1.0.0'
     implementation 'com.google.zxing:core:3.3.3'
     implementation 'com.github.lixiao-nb666:erweima_lib:1.0.0'
+    implementation project(':hud_manager_lib')
 
 
 }

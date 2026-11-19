@@ -1,0 +1,25 @@
+<resources>
+    <string name="test_send_null">send is nill!</string>
+    <string name="test_length">length</string>
+    <string name="test_need_camera">Camera permission is required to use the scan feature.</string>
+    <string name="test_connected">Connected</string>
+    <string name="test_disconnected">Disconnected</string>
+    <string name="test_factory_testing">Factory Testing</string>
+    <string name="test_check_version">Check Version</string>
+    <string name="test_check_sn">Check SN</string>
+    <string name="test_scan_get_sn">Scan get SN</string>
+    <string name="test_rewrite_sn">Rewrite SN</string>
+    <string name="test_light_start">Light sensor start</string>
+    <string name="test_light_stop">Light sensor stop</string>
+    <string name="test_start_data_test">Start data test</string>
+    <string name="test_stop_data_test">Stop data test</string>
+    <string name="test_color_change">Factory aging pattern (color change)</string>
+    <string name="test_brightness_auto">Automatic Brightness</string>
+    <string name="test_brightness_a">Brightness +</string>
+    <string name="test_brightness_d">Brightness -</string>
+    <string name="test_brightness_1">Brightness 1</string>
+    <string name="test_brightness_10">Brightness 10</string>
+    <string name="test_enter_factory_test_mold">Enter the factory test mode</string>
+    <string name="test_sn_check">SN check string : </string>
+    <string name="test_version_check">Version check string : </string>
+</resources>
