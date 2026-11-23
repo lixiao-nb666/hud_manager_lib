@@ -8,6 +8,43 @@
     android:gravity="center"
     android:orientation="vertical">
 
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+            android:text="@string/test_device_check"
+            android:textSize="66px" />
+
+        <TextView
+            android:id="@+id/tv_device_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+            android:textSize="66px" />
+
+
+        <EditText
+            android:id="@+id/et_device_check"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px" />
+
+
+
+    </LinearLayout>
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,6 +78,9 @@
 
 
     </LinearLayout>
+
+
+
 
 
     <LinearLayout
@@ -174,24 +214,7 @@
 
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/bt_rg_test_start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/test_light_start" />
 
-        <Button
-            android:id="@+id/bt_rg_test_stop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/test_light_stop"  />
-
-    </LinearLayout>
 
 
 
@@ -274,5 +297,24 @@
     </LinearLayout>
 
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/bt_rg_test_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/test_light_start" />
+
+        <Button
+            android:id="@+id/bt_rg_test_stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/test_light_stop"  />
+
+    </LinearLayout>
 
 </LinearLayout>

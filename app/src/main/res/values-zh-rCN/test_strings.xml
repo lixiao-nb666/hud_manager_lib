@@ -22,4 +22,5 @@
     <string name="test_enter_factory_test_mold">进入工厂测试模式</string>
     <string name="test_sn_check">SN效验码 : </string>
     <string name="test_version_check">版本校验码 : </string>
+    <string name="test_device_check">设备名检测 : </string>
 </resources>

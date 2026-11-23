@@ -269,10 +269,16 @@ public class HudFactoryTestActivity extends BaseCompatActivity {
 
             switch (msgType) {
                 case SHOW_DEVICE:
+                    deviceIsOk=false;
                     if (HudManager.getInstance().deviceIsConnected()) {
                         BleDeviceBean bleDeviceBean=NewBeeBleManager.getInstance().getNowUseBleDevice();
                         if(null!=bleDeviceBean){
                             String bleName=bleDeviceBean.getBleName();
+                            if(TextUtils.isEmpty(deviceNameStr)||bleName.contains(deviceNameStr)){
+                                deviceIsOk=true;
+                            }
+
+
                             if(TextUtils.isEmpty(bleName)){
                                 bleName=HudManager.getInstance().getHudDevice().name();
                             }
@@ -293,7 +299,6 @@ public class HudFactoryTestActivity extends BaseCompatActivity {
                     }
                     snIsOk=false;
                     versionIsOk=false;
-
                     snDefTV.setText("");
                     snOtherTV.setText("");
                     versionTV.setText("");
@@ -399,10 +404,10 @@ public class HudFactoryTestActivity extends BaseCompatActivity {
     private TestThread testThread;
 
     private Button toScanBT, initBT, searchBT, disconnectBT, startTestBT, stopTestBT,queSNBT,reWriteSNBT,oldMoldBT,rgStartBT,rgStopBT,blAutoBT,blABT,blDBt,queVersionBT,br10BT,br1BT;
-    private TextView bleNameTV, bleConnectTV, snDefTV,snOtherTV,versionTV,snCheckTV,versionCheckTV;
+    private TextView bleNameTV, bleConnectTV, snDefTV,snOtherTV,versionTV,snCheckTV,versionCheckTV,deviceCheckTV;
 
     private LinearLayout bg1, bg2,allLL;
-    private EditText snET,snCheckET,versionCheckET;
+    private EditText snET,snCheckET,versionCheckET,deviceCheckET;
 
     @Override
     public int getViewLayoutRsId() {
@@ -441,6 +446,8 @@ public class HudFactoryTestActivity extends BaseCompatActivity {
         versionCheckTV=findViewById(R.id.tv_version_check);
         snCheckET=findViewById(R.id.et_sn_check);
         versionCheckET=findViewById(R.id.et_version_check);
+        deviceCheckTV=findViewById(R.id.tv_device_check);
+        deviceCheckET=findViewById(R.id.et_device_check);
     }
 
     @Override
@@ -479,8 +486,10 @@ public class HudFactoryTestActivity extends BaseCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                     if(null==s||TextUtils.isEmpty(s.toString())){
                         snCheckTV.setText("");
+                        MyShare.getInstance().putString(snShareKey,"");
                     }else {
                         snCheckTV.setText(s.toString());
+                        MyShare.getInstance().putString(snShareKey,s.toString());
                     }
             }
 
@@ -499,9 +508,33 @@ public class HudFactoryTestActivity extends BaseCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(null==s||TextUtils.isEmpty(s.toString())){
                     versionCheckTV.setText("");
+                    MyShare.getInstance().putString(versionShareKey,"");
                 }else {
                     versionCheckTV.setText(s.toString());
+                    MyShare.getInstance().putString(versionShareKey,s.toString());
                 }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        deviceCheckET.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(null==s||TextUtils.isEmpty(s.toString())){
+                    deviceNameStr="";
+                }else {
+                    deviceNameStr=s.toString();
+                }
+                deviceCheckTV.setText(deviceNameStr);
+                MyShare.getInstance().putString(deviceShareKey,deviceNameStr);
             }
 
             @Override
@@ -520,11 +553,16 @@ public class HudFactoryTestActivity extends BaseCompatActivity {
             shareVersionStr="1.2.09";
         }
         versionCheckET.setText(shareVersionStr);
-
+        deviceNameStr=MyShare.getInstance().getString(deviceShareKey);
+        if(TextUtils.isEmpty(deviceNameStr)){
+            deviceNameStr="H5000";
+        }
+        deviceCheckET.setText(deviceNameStr);
     }
     private final String snShareKey="snShareKey";
     private final String versionShareKey="versionShareKey";
-
+    private final String deviceShareKey="deviceShareKey";
+    private  String deviceNameStr;
     @Override
     public void closeActivity() {
         if(null!=testThread){
@@ -549,9 +587,9 @@ public class HudFactoryTestActivity extends BaseCompatActivity {
 
     }
 
-    private boolean snIsOk,versionIsOk;
+    private boolean snIsOk,versionIsOk,deviceIsOk;
     private void checkSnAndVersion(){
-        if(snIsOk&&versionIsOk){
+        if(snIsOk&&versionIsOk&&deviceIsOk){
             allLL.setBackgroundColor(getColor(com.newbee.bulid_lib.R.color.green));
         }
     }

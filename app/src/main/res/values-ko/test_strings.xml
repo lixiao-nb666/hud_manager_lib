@@ -22,5 +22,5 @@
     <string name="test_enter_factory_test_mold">Enter the factory test mode</string>
     <string name="test_sn_check">SN check string : </string>
     <string name="test_version_check">Version check string : </string>
-
+    <string name="test_device_check">Device check string : </string>
 </resources>

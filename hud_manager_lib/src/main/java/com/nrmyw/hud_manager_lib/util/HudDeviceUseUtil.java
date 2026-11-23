@@ -28,4 +28,15 @@ public class HudDeviceUseUtil {
         typeList.add(HudDevice.T850_2.getBleDevice());
         return typeList;
     }
+
+    public static List<BleDeviceBean> getT850AndH5000List(){
+        List<BleDeviceBean> typeList=new ArrayList<>();
+        typeList.add(HudDevice.T850.getBleDevice());
+        typeList.add(HudDevice.T850_1.getBleDevice());
+        typeList.add(HudDevice.T850_2.getBleDevice());
+        typeList.add(HudDevice.H5000.getBleDevice());
+        typeList.add(HudDevice.H5000_1.getBleDevice());
+        typeList.add(HudDevice.H5000_2.getBleDevice());
+        return typeList;
+    }
 }
